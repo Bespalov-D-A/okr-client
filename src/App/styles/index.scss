@@ -1,1 +1,6 @@
 @import './reset.css';
+@import './vars.scss';
+
+body {
+	color: var(--color-v-dark);
+}

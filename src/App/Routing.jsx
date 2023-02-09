@@ -1,10 +1,9 @@
 import {RouterProvider} from "react-router-dom"
-import {withProviders} from "./providers"
 import {router} from "./providers/router/WithRouter"
-import './styles/index.scss'
 
-const App = () => {
+//Инициализация роутинга приложения
+const Routing = () => {
 	return <RouterProvider router={router} />
 }
 
-export default withProviders(App)
+export default Routing

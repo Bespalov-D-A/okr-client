@@ -1,12 +1,11 @@
-import {Suspense} from "react";
 import {createBrowserRouter} from "react-router-dom";
-import Main from "../../../Pages/Main";
+import App from "../..";
 import {routes} from "./routes";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: <App />,
     children: routes.map((route) => ({
       index: route.path === "/",
       path: route.path,
