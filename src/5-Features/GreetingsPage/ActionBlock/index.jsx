@@ -1,10 +1,17 @@
 import Button from "@mui/material/Button";
+import {useModalStore} from "../../../6-Entities/modals";
 import s from "./index.module.scss";
 
 const ActionBlock = () => {
+	const setOpenGreetingModal = useModalStore(state=> state.setOpen)
+
+	const whatHandleClick = () => {
+			setOpenGreetingModal(true)	
+	}
+
 	return (
 		<div className={s.actions}>
-			<Button variant="contained" className={`${s.btn} ${s.what}`}>
+			<Button onClick={whatHandleClick} variant="contained" className={`${s.btn} ${s.what}`}>
 				Что это?
 			</Button>
 			<div className={s.wrap}>
