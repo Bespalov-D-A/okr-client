@@ -1,0 +1,23 @@
+.actions {
+	width: 100%;
+	max-width: 600px;
+	flex: 1;
+}
+
+.wrap {
+	display: flex;
+	.btn:first-child {
+		margin-right: 12px;
+	}
+}
+
+.btn {
+	width: 100%;
+	min-width: 200px;
+	padding: 12px;
+	margin-bottom: 24px;
+	&.what {
+		padding: 16px;
+		margin-bottom: 24px;
+	}
+}

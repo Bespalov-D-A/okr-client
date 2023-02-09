@@ -1,21 +1,16 @@
-import {Navigate} from "react-router-dom";
-import Greetings from "../../../Pages/Greetings";
+import Greeting from "../../../Pages/Greeting";
 import Main from "../../../Pages/Main";
 import Profile from "../../../Pages/Profile";
 import Registration from "../../../Pages/Registration";
 
 export const routes = [
   {
-    path: "",
-    element: <Navigate to="main" />,
-  },
-  {
     path: "main/",
     element: <Main />,
   },
   {
     path: "greetings/",
-    element: <Greetings />,
+    element: <Greeting />,
   },
 {
     path: "profile/",

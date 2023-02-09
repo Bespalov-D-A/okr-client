@@ -1,12 +1,16 @@
-import {RouterProvider} from "react-router-dom"
-import {withProviders} from "./providers"
-import {router} from "./providers/router/WithRouter"
-import './styles/index.scss'
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/700.css';
+import { withProviders } from "./providers";
+import "./styles/index.scss";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/700.css";
+import "@fontsource/caveat/400.css";
+import "@fontsource/caveat/700.css";
+import "@fontsource/raleway/400.css";
+import { Outlet } from "react-router-dom";
 
+//Входная точка приложения
 const App = () => {
-	return <RouterProvider router={router} />
-}
+	return <Outlet />;
+};
 
-export default withProviders(App)
+//оборачиваем входной компонент App провайдерами
+export default withProviders(App);
