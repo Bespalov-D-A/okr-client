@@ -1,0 +1,49 @@
+.wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal {
+	display: inline-block;
+	outline: none;
+	background: #fff;
+}
+
+.close {
+	padding-top: 6px;
+	padding-right: 6px;
+	text-align: right;
+}
+
+.close-btn {
+	width: 56px;
+	height: 56px;
+	border-radius: 0;
+	color: var(--color-gray3);
+}
+
+
+.close-ico {
+	font-size: 48px;
+}
+
+.title {
+	padding: 0 96px 36px 36px;
+}
+
+.content {
+	padding: 0 56px 0 36px;
+	margin-bottom: 36px;
+}
+
+.btn-wrap {
+	padding: 0 56px 36px 0;
+	text-align: right;
+}
+
+.btn {
+	padding-right: 24px;
+	padding-left: 24px;
+	min-width: 140px;
+}
