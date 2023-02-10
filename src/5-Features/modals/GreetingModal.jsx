@@ -1,9 +1,9 @@
-import {useModalStore} from "../../6-Entities/modals"
+import {useGreetingModal} from "../../6-Entities/modals"
 import ModalUI from "../../7-Shared/ui/Modal"
 
 const GreetingModal = ({component}) => {
-	const openGreetingModal = useModalStore(state => state.open)
-	const setOpenGreetingModal = useModalStore(state=> state.setOpen)
+	const openGreetingModal = useGreetingModal(state => state.open)
+	const setOpenGreetingModal = useGreetingModal(state=> state.setOpen)
 
 	return <ModalUI
 				btnTitle="Далее"
