@@ -1,9 +1,16 @@
 .form-wrap {
-	display: flex;
-	flex-flow: column wrap;
 	min-width: 320px;
 }
 
 .form-wrap > * {
 	margin-bottom: 12px;
+}
+
+.form {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.btn-wrap {
+	text-align: right;
 }
