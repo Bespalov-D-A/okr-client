@@ -1,19 +1,33 @@
 import TextField from "@mui/material/TextField";
 
 const DefaultField = (props) => {
-	//error - текст ошибки или false
-	const { id, label = 'Введите значение', variant = 'standard', defaultValue, error } = props;
+	const {
+		name,
+		value,
+		onChange,
+		setFieldTouched,
+		errors,
+		touched,
+		required,
+		fieldtype,
+		label = "Введите значение",
+		variant = "standard",
+	} = props;
 
 	return (
 		<TextField
-			id={id}
-			label={label}
+			id={name}
+			name={name}
+			value={value}
+			onChange={onChange}
+			required={required}
 			variant={variant}
-			error={error}
-			defaultValue={defaultValue}
-			helperText={error}
+			type={fieldtype}
+			label={label}
+			onBlur={()=>setFieldTouched(name)}
+			error={errors[name] && touched}
+			helperText={errors[name] && touched ? errors[name] : null}
 		/>
 	);
 };
-
 export default DefaultField;

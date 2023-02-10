@@ -9,4 +9,7 @@ export const useGreetingModal = create((set) => ({
 export const useLoginModal = create((set) => ({
   open: false,
 	setOpen: (open) => set(produce(state=> {state.open = open})),
+  authBtnDisabled: true,
+	setAuthBtnDisabled: (bool) => set(produce(state=> {state.authBtnDisabled = bool})),
+
 }))

@@ -1,6 +1,4 @@
 //Модальное окно. Принимает параметрами содержание
-//колбек который будет вызван при нажатии
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Fade from "@mui/material/Fade";
 
 const ModalUI = (props) => {
-	const { JSXcomponent, callback, open, handleClose, btnTitle, title } = props;
+	const { JSXcomponent, open, handleClose, title } = props;
 
 	return (
 		<Modal
@@ -36,16 +34,6 @@ const ModalUI = (props) => {
 						{title}
 					</Typography>
 					<div className={s.content}>{JSXcomponent()}</div>
-					<div className={s["btn-wrap"]}>
-						<Button
-							className={s.btn}
-							onClick={callback}
-							variant="contained"
-							size="large"
-						>
-							{btnTitle}
-						</Button>
-					</div>
 				</div>
 			</Fade>
 		</Modal>
