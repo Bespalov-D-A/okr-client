@@ -3,19 +3,20 @@ import Button from "@mui/material/Button";
 import DefaultField from "../../../7-Shared/ui/Fields/Default";
 import { useFormik } from "formik";
 import s from "./index.module.scss";
-import {useLoginModal} from "../../../6-Entities/modals";
-import {regValidationSchema} from "../../../7-Shared/config/forms/validationSchemes/registration";
-import {regFields} from "../../../6-Entities/fields/RegFields";
+import { regValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/registration";
+import { regFields } from "../../../6-Entities/fields/RegFields";
+import { useCommon } from "../../../6-Entities/common";
+import LogoBlock from "../../../7-Shared/components/LogoBlock";
 
-const RegistrationForm = ({ children }) => {
-	const authBtnDisabled = useLoginModal((state) => state.authBtnDisabled);
+const RegistrationForm = ({ children, googleLogIn }) => {
+	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
 
 	const regFormik = useFormik({
 		initialValues: {
 			email: "",
 			phone: "",
-			password: '',
-			confirm_password: ''
+			password: "",
+			confirm_password: "",
 		},
 		validationSchema: regValidationSchema,
 		onSubmit: (values) => {
@@ -31,6 +32,7 @@ const RegistrationForm = ({ children }) => {
 			autoComplete="off"
 			onSubmit={regFormik.handleSubmit}
 		>
+			{googleLogIn()}
 			{regFields.map((field) => (
 				<DefaultField
 					key={field.name}
@@ -46,8 +48,8 @@ const RegistrationForm = ({ children }) => {
 			))}
 			{children}
 			<div className={s["btn-wrap"]}>
-				<Button disabled={authBtnDisabled} type="submit" variant="contained">
-					Войти
+				<Button disabled={formBtnDisabled} type="submit" variant="contained">
+					Зарегистрироваться
 				</Button>
 			</div>
 		</Box>

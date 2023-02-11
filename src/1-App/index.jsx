@@ -9,7 +9,7 @@ import { Outlet } from "react-router-dom";
 
 //Входная точка приложения
 const App = () => {
-	return <Outlet />;
+	return ( <Outlet />);
 };
 
 //оборачиваем входной компонент App провайдерами

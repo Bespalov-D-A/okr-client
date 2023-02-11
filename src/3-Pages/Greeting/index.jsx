@@ -1,18 +1,20 @@
 import Container from "@mui/material/Container";
 import React from "react";
-import AuthModalWidget from "../../4-Widgets/AuthModalWidget";
-import GreetingWidget from "../../4-Widgets/Greeting";
+import AuthModalW from "../../4-Widgets/AuthModalW";
+import GreetingW from "../../4-Widgets/GreetingW";
 import GreetingModalContent from "../../5-Features/modals/Content/GreetingModal";
 import GreetingModal from "../../5-Features/modals/GreetingModal";
+import Alert from "../../5-Features/ui/Alert";
 import s from "./index.module.scss";
 
 const Greeting = () => {
 	return (
 		<div className={s.wrap}>
+			<Alert />
 			<GreetingModal component={GreetingModalContent}/>
-			<AuthModalWidget/>
+			<AuthModalW/>
 			<Container maxWidth="xl" className={s.container}>
-				<GreetingWidget />
+				<GreetingW/>
 			</Container>
 		</div>
 	);

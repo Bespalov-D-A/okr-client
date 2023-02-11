@@ -3,12 +3,12 @@ import Button from "@mui/material/Button";
 import DefaultField from "../../../7-Shared/ui/Fields/Default";
 import { useFormik } from "formik";
 import s from "./index.module.scss";
-import { useLoginModal } from "../../../6-Entities/modals";
 import {profileValidationSchema} from "../../../7-Shared/config/forms/validationSchemes/profile";
 import {profileFields} from "../../../6-Entities/fields/ProfileFields";
+import {useCommon} from "../../../6-Entities/common";
 
 const ProfileForm = ({ children }) => {
-	const authBtnDisabled = useLoginModal((state) => state.authBtnDisabled);
+	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
 
 	const profileFormik = useFormik({
 		initialValues: {
@@ -53,7 +53,7 @@ const ProfileForm = ({ children }) => {
 			))}
 			{children}
 			<div className={s["btn-wrap"]}>
-				<Button disabled={authBtnDisabled} type="submit" variant="contained">
+				<Button disabled={formBtnDisabled} type="submit" variant="contained">
 					Войти
 				</Button>
 			</div>

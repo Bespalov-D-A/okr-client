@@ -6,6 +6,6 @@ import { theme } from "../../mui/WithTheme";
 export const withMuiStyled = (YourReactComponent) => () =>
 	(
 		<StyledEngineProvider injectFirst>
-			<ThemeProvider theme={theme}>{YourReactComponent()}</ThemeProvider>
+			<ThemeProvider theme={theme}>{YourReactComponent}</ThemeProvider>
 		</StyledEngineProvider>
 	);
