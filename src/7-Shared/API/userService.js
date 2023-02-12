@@ -33,4 +33,12 @@ export class userService {
     );
     return response;
   }
+
+  static async recoveryPassword(data) {
+    const response = await axios.post(`${server}/api/auth/forgot-password`, {
+      email: data.email,
+    });
+    return response;
+  }
+
 }

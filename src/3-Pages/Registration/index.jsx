@@ -22,7 +22,9 @@ const Registration = () => {
 		<div className={s.wrap}>
 			<Alert />
 			<div className={s.form}>
+				<div onClick={()=>navigate('/greetings')}  className={s['logo-wrap']}>
 				<LogoBlock style={{ marginBottom: 24 }} imgStyle={{ width: 100 }} />
+				</div>
 				<RegFormW />
 			</div>
 		</div>
