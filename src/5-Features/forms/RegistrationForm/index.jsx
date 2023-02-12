@@ -5,22 +5,45 @@ import { useFormik } from "formik";
 import s from "./index.module.scss";
 import { regValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/registration";
 import { regFields } from "../../../6-Entities/fields/RegFields";
-import { useCommon } from "../../../6-Entities/common";
-import LogoBlock from "../../../7-Shared/components/LogoBlock";
+import { useAlert, useCommon } from "../../../6-Entities/common";
+import { userService } from "../../../7-Shared/API/userService";
+import { saveUserData } from "../../../7-Shared/lib/saveUserData";
+import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import Typography from "@mui/material/Typography";
 
-const RegistrationForm = ({ children, googleLogIn }) => {
+const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
-
+	const setType = useAlert((state) => state.setType);
+	const setMsg = useAlert((state) => state.setMessage);
+	const navigate = useNavigate();
+	const captchaRef = useRef(null);
 	const regFormik = useFormik({
 		initialValues: {
 			email: "",
-			phone: "",
 			password: "",
 			confirm_password: "",
 		},
 		validationSchema: regValidationSchema,
 		onSubmit: (values) => {
-			console.log(values);
+			const recaptchaValue = captchaRef.current.getValue();
+			if (!recaptchaValue) {
+				setType("error");
+				setMsg("Подтвердите, что вы не роборот");
+			} else {
+				console.log(values);
+				userService
+					.createUser(values)
+					.then((res) => {
+						saveUserData(res.data);
+						navigate("/main", { replace: true });
+					})
+					.catch((e) => {
+						setType("error");
+						setMsg("Не удалось создать аккаунт");
+						console.log(e);
+					});
+			}
 		},
 	});
 
@@ -33,6 +56,9 @@ const RegistrationForm = ({ children, googleLogIn }) => {
 			onSubmit={regFormik.handleSubmit}
 		>
 			{googleLogIn()}
+			<Typography variant="h4" component="h4" className={s.or}>
+				или
+			</Typography>
 			{regFields.map((field) => (
 				<DefaultField
 					key={field.name}
@@ -46,7 +72,7 @@ const RegistrationForm = ({ children, googleLogIn }) => {
 					errors={regFormik.errors}
 				/>
 			))}
-			{children}
+			{captchaFunc(captchaRef)}
 			<div className={s["btn-wrap"]}>
 				<Button disabled={formBtnDisabled} type="submit" variant="contained">
 					Зарегистрироваться

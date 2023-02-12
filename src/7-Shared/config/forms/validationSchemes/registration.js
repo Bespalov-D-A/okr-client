@@ -11,10 +11,10 @@ export const regValidationSchema = object({
     .required(REQUIRED)
     .max(60, maxFunc(60))
     .email("Некорректная почта"),
-  phone: string()
-    .required(REQUIRED)
-    .max(20, maxFunc(20))
-    .matches(/^[0-9]+/gm, ONLY_NUMBERS),
+/*  phone: string()*/
+    /*.required(REQUIRED)*/
+    /*.max(20, maxFunc(20))*/
+    /*.matches(/^[0-9]+/gm, ONLY_NUMBERS),*/
   password: string().required(REQUIRED).max(60, maxFunc(60)),
   confirm_password: string()
     .test("passwords-match", "Пароли не совпадают", function (value) {

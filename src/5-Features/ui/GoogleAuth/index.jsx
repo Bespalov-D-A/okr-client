@@ -1,24 +1,16 @@
 import { useEffect, useState } from "react";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import {  useGoogleLogin } from "@react-oauth/google";
 import GoogleLogo from "./ui/img/google.svg";
-import axios from "axios";
 import Button from "@mui/material/Button";
 import s from "./index.module.scss";
 import { userService } from "../../../7-Shared/API/userService";
 import { useAlert } from "../../../6-Entities/common";
-
-const { default: GoogleOAuth } = require("../../../7-Shared/lib/GoogleOAuth");
-
-//<GoogleOAuth responseMessage={responseMessage}  errorMessage={errorMessage}/>
+import {saveUserData} from "../../../7-Shared/lib/saveUserData";
+import {useNavigate} from "react-router-dom";
 
 const GoogleAuth = () => {
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
 
+  const navigate = useNavigate()
   const setType = useAlert((state) => state.setType);
   const setMsg = useAlert((state) => state.setMessage);
   const [user, setUser] = useState(null);
@@ -28,7 +20,17 @@ const GoogleAuth = () => {
       userService
         .getGoogleUserData(user.access_token)
         .then((res) => {
-          console.log(res);
+          userService
+            .createUser(res.data)
+            .then((res) => {
+              saveUserData(res.data);
+              navigate("/main", { replace: true });
+            })
+            .catch((e) => {
+              setType("error");
+              setMsg("Не удалось создать аккаунт");
+              console.log(e);
+            });
         })
         .catch((err) => {
           setType("error");

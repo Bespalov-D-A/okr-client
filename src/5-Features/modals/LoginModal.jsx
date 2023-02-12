@@ -13,6 +13,7 @@ const RegistrationModal = ({ component }) => {
 
 	return (
 		<ModalUI
+			title='Авторизация'
 			JSXcomponent={component}
 			open={openLoginModal}
 			handleClose={modalHandleClose}

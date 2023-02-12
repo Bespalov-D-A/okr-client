@@ -5,9 +5,9 @@ import LoginModal from "../../5-Features/modals/LoginModal";
 
 const AuthModalW= () => {
 	const modalContent = () => (
-		<LoginModalContent>
+		<LoginModalContent captchaFunc={(innerRef)=><Captcha innerRef={innerRef} />}>
 			<Forgot />
-			<Captcha />
+			
 		</LoginModalContent>
 	);
 
