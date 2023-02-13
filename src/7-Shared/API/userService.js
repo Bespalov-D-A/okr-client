@@ -6,7 +6,7 @@ const server = process.env.REACT_APP_SERVER;
 export class userService {
   static async createUser(data) {
     const response = await axios.post(`${server}/api/auth/local/register/`, {
-      username: data.email.split('@')[1] === 'gmail.com' ? data.email.split('@')[0] : data.email,
+      username: data.email,
       email: data.email,
       password: data.password ? data.password : randomstring,
     });

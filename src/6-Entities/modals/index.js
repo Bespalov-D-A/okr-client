@@ -6,6 +6,12 @@ export const useGreetingModal = create((set) => ({
 	setOpen: (open) => set(produce(state=> {state.open = open})),
 }))
 
+export const useForgotPassModal = create((set) => ({
+  open: false,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+}))
+
+
 export const useLoginModal = create((set) => ({
   open: false,
 	setOpen: (open) => set(produce(state=> {state.open = open})),

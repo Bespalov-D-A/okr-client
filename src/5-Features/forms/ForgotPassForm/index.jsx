@@ -3,47 +3,49 @@ import Button from "@mui/material/Button";
 import DefaultField from "../../../7-Shared/ui/Fields/Default";
 import { useFormik } from "formik";
 import s from "./index.module.scss";
-import { regValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/registration";
-import { regFields } from "../../../6-Entities/fields/RegFields";
+import { useEffect, useRef } from "react";
 import { useAlert, useCommon } from "../../../6-Entities/common";
 import { userService } from "../../../7-Shared/API/userService";
 import { saveUserData } from "../../../7-Shared/lib/saveUserData";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
-import Typography from "@mui/material/Typography";
 import {
 	CONFIRM_YOU_ARE_NOT_A_ROBOT,
-	FAILED_TO_CREATE_ACCOUNT,
-	SUCCESS_ACCOUNT_CREATE,
+	FAILED_AUTHENTICATION,
+	FAILED_SEND_RECOVERY_PASS_LINK,
+	SUCCESS_SENT_RECOVERY_PASS_LINK,
 } from "../../../7-Shared/assests/Constants";
+import { forgotPassFields } from "../../../6-Entities/fields/ForgotPassFields";
+import { forgotPassValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/forgotPass";
 
-const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
+const ForgotPassForm = ({ children, captchaFunc }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
+	const setFormBtnDisabled = useCommon((state) => state.setFormBtnDisabled);
 	const setAlert = useAlert((state) => state.setAlert);
-	const navigate = useNavigate();
 	const captchaRef = useRef(null);
-	const regFormik = useFormik({
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		//Делаем кнопку submit неактивным
+		setFormBtnDisabled(true);
+	}, []);
+
+	const forgotFormik = useFormik({
 		initialValues: {
 			email: "",
-			password: "",
-			confirm_password: "",
 		},
-		validationSchema: regValidationSchema,
+		validationSchema: forgotPassValidationSchema,
 		onSubmit: (values) => {
 			const recaptchaValue = captchaRef.current.getValue();
 			if (!recaptchaValue) {
 				setAlert({ type: "error", msg: CONFIRM_YOU_ARE_NOT_A_ROBOT });
 			} else {
-				console.log(values);
 				userService
-					.createUser(values)
+					.recoveryPassword(values)
 					.then((res) => {
-						setAlert({ type: "success", msg: SUCCESS_ACCOUNT_CREATE });
-						saveUserData(res.data, setAlert);
-						navigate("/main", { replace: true });
+						setAlert({ type: "info", msg: SUCCESS_SENT_RECOVERY_PASS_LINK });
 					})
 					.catch((e) => {
-						setAlert({ type: "error", msg: FAILED_TO_CREATE_ACCOUNT });
+						setAlert({ type: "error", msg: FAILED_SEND_RECOVERY_PASS_LINK });
 						console.log(e);
 					});
 			}
@@ -56,33 +58,30 @@ const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 			component="form"
 			noValidate
 			autoComplete="off"
-			onSubmit={regFormik.handleSubmit}
+			onSubmit={forgotFormik.handleSubmit}
 		>
-			{googleLogIn()}
-			<Typography variant="h4" component="h4" className={s.or}>
-				или
-			</Typography>
-			{regFields.map((field) => (
+			{forgotPassFields.map((field) => (
 				<DefaultField
 					key={field.name}
 					name={field.name}
 					label={field.label}
 					fieldtype={field.fieldType}
-					setFieldTouched={regFormik.setFieldTouched}
-					value={regFormik.values[field.name]}
-					onChange={regFormik.handleChange}
-					touched={regFormik.touched[field.name]}
-					errors={regFormik.errors}
+					setFieldTouched={forgotFormik.setFieldTouched}
+					value={forgotFormik.values[field.name]}
+					onChange={forgotFormik.handleChange}
+					touched={forgotFormik.touched[field.name]}
+					errors={forgotFormik.errors}
 				/>
 			))}
+			{children}
 			{captchaFunc(captchaRef)}
 			<div className={s["btn-wrap"]}>
 				<Button disabled={formBtnDisabled} type="submit" variant="contained">
-					Зарегистрироваться
+					Отправить запрос
 				</Button>
 			</div>
 		</Box>
 	);
 };
 
-export default RegistrationForm;
+export default ForgotPassForm;

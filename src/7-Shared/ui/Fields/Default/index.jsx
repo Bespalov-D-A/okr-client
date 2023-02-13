@@ -1,4 +1,5 @@
 import TextField from "@mui/material/TextField";
+import s from './index.module.scss'
 
 const DefaultField = (props) => {
 	const {
@@ -18,6 +19,7 @@ const DefaultField = (props) => {
 		<TextField
 			id={name}
 			name={name}
+			className={s.field}
 			value={value}
 			onChange={onChange}
 			required={required}

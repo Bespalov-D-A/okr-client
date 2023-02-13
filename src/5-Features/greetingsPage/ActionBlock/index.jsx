@@ -1,6 +1,5 @@
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
-import { useModalState } from "../../../6-Entities/common";
 import { useGreetingModal, useLoginModal } from "../../../6-Entities/modals";
 import s from "./index.module.scss";
 

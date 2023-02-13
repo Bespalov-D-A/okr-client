@@ -30,7 +30,7 @@ export const useAlert = create((set) => ({
     set(
       produce((state) => {
         state.type = obj.type;
-        state.msg = obj.message;
+        state.message = obj.msg;
       })
     ),
 }));
