@@ -8,9 +8,14 @@ import { useAlert, useCommon } from "../../../6-Entities/common";
 import { userService } from "../../../7-Shared/API/userService";
 import { saveUserData } from "../../../7-Shared/lib/saveUserData";
 import { useNavigate } from "react-router-dom";
-import {CONFIRM_YOU_ARE_NOT_A_ROBOT, FAILED_AUTHENTICATION} from "../../../7-Shared/assests/Constants";
-import {forgotPassFields} from "../../../6-Entities/fields/ForgotPassFields";
-import {forgotPassValidationSchema} from "../../../7-Shared/config/forms/validationSchemes/forgotPass";
+import {
+	CONFIRM_YOU_ARE_NOT_A_ROBOT,
+	FAILED_AUTHENTICATION,
+	FAILED_SEND_RECOVERY_PASS_LINK,
+	SUCCESS_SENT_RECOVERY_PASS_LINK,
+} from "../../../7-Shared/assests/Constants";
+import { forgotPassFields } from "../../../6-Entities/fields/ForgotPassFields";
+import { forgotPassValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/forgotPass";
 
 const ForgotPassForm = ({ children, captchaFunc }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
@@ -32,16 +37,15 @@ const ForgotPassForm = ({ children, captchaFunc }) => {
 		onSubmit: (values) => {
 			const recaptchaValue = captchaRef.current.getValue();
 			if (!recaptchaValue) {
-				setAlert({type:'error', msg:CONFIRM_YOU_ARE_NOT_A_ROBOT})
+				setAlert({ type: "error", msg: CONFIRM_YOU_ARE_NOT_A_ROBOT });
 			} else {
 				userService
-					.authUser(values)
+					.recoveryPassword(values)
 					.then((res) => {
-						saveUserData(res.data);
-						navigate("/main", { replace: true });
+						setAlert({ type: "info", msg: SUCCESS_SENT_RECOVERY_PASS_LINK });
 					})
 					.catch((e) => {
-						setAlert({type:'error', msg:FAILED_AUTHENTICATION})
+						setAlert({ type: "error", msg: FAILED_SEND_RECOVERY_PASS_LINK });
 						console.log(e);
 					});
 			}

@@ -13,8 +13,8 @@ import { useRef } from "react";
 import Typography from "@mui/material/Typography";
 import {
 	CONFIRM_YOU_ARE_NOT_A_ROBOT,
-	CREATE_ACCOUNT_SUCCESS,
 	FAILED_TO_CREATE_ACCOUNT,
+	SUCCESS_ACCOUNT_CREATE,
 } from "../../../7-Shared/assests/Constants";
 
 const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
@@ -38,7 +38,7 @@ const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 				userService
 					.createUser(values)
 					.then((res) => {
-						setAlert({ type: "success", msg: CREATE_ACCOUNT_SUCCESS });
+						setAlert({ type: "success", msg: SUCCESS_ACCOUNT_CREATE });
 						saveUserData(res.data, setAlert);
 						navigate("/main", { replace: true });
 					})
