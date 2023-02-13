@@ -1,3 +1,4 @@
+import GoogleAuthCallback from "../../../3-Pages/GoogleAuthCallback";
 import Greeting from "../../../3-Pages/Greeting";
 import Main from "../../../3-Pages/Main";
 import Profile from "../../../3-Pages/Profile";
@@ -20,4 +21,9 @@ export const routes = [
     path: "registration/",
     element: <Registration />,
   },
+{
+  path: "api/auth/google/callback?",
+    element: <GoogleAuthCallback />,
+  },
+
 ];

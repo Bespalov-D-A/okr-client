@@ -2,12 +2,15 @@ import Forgot from "../../5-Features/auth/Forgot";
 import Captcha from "../../5-Features/Captcha";
 import LoginModalContent from "../../5-Features/modals/Content/LoginModal";
 import LoginModal from "../../5-Features/modals/LoginModal";
+import GoogleAuth from "../../5-Features/ui/GoogleAuth";
 
-const AuthModalW= () => {
+const AuthModalW = () => {
 	const modalContent = () => (
-		<LoginModalContent captchaFunc={(innerRef)=><Captcha innerRef={innerRef} />}>
+		<LoginModalContent
+			captchaFunc={(innerRef) => <Captcha innerRef={innerRef} />}
+			googleLogIn={() => <GoogleAuth />}
+		>
 			<Forgot />
-			
 		</LoginModalContent>
 	);
 

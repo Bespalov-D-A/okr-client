@@ -11,11 +11,11 @@ import { saveUserData } from "../../../7-Shared/lib/saveUserData";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import Typography from "@mui/material/Typography";
+import {CONFIRM_YOU_ARE_NOT_A_ROBOT, FAILED_TO_CREATE_ACCOUNT} from "../../../7-Shared/assests/Constants";
 
 const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
-	const setType = useAlert((state) => state.setType);
-	const setMsg = useAlert((state) => state.setMessage);
+	const setAlert = useAlert((state) => state.setAlert);
 	const navigate = useNavigate();
 	const captchaRef = useRef(null);
 	const regFormik = useFormik({
@@ -28,8 +28,7 @@ const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 		onSubmit: (values) => {
 			const recaptchaValue = captchaRef.current.getValue();
 			if (!recaptchaValue) {
-				setType("error");
-				setMsg("Подтвердите, что вы не роборот");
+				setAlert({ type: "error", msg: CONFIRM_YOU_ARE_NOT_A_ROBOT });
 			} else {
 				console.log(values);
 				userService
@@ -39,8 +38,7 @@ const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 						navigate("/main", { replace: true });
 					})
 					.catch((e) => {
-						setType("error");
-						setMsg("Не удалось создать аккаунт");
+						setAlert({ type: "error", msg: FAILED_TO_CREATE_ACCOUNT });
 						console.log(e);
 					});
 			}

@@ -11,7 +11,7 @@ import { userService } from "../../../7-Shared/API/userService";
 import { saveUserData } from "../../../7-Shared/lib/saveUserData";
 import { useNavigate } from "react-router-dom";
 
-const AuthForm = ({ children, captchaFunc }) => {
+const AuthForm = ({googleLogIn, children, captchaFunc }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
 	const setFormBtnDisabled = useCommon((state) => state.setFormBtnDisabled);
 	const setType = useAlert((state) => state.setType);
@@ -60,6 +60,7 @@ const AuthForm = ({ children, captchaFunc }) => {
 			autoComplete="off"
 			onSubmit={authFormik.handleSubmit}
 		>
+			{googleLogIn()}
 			{authFields.map((field) => (
 				<DefaultField
 					key={field.name}

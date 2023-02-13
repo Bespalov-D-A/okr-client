@@ -11,5 +11,12 @@ export const useLoginModal = create((set) => ({
 	setOpen: (open) => set(produce(state=> {state.open = open})),
   authBtnDisabled: true,
 	setAuthBtnDisabled: (bool) => set(produce(state=> {state.authBtnDisabled = bool})),
+}))
+
+export const useRecoveryModal = create((set) => ({
+  open: false,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+  BtnDisabled: true,
+	setBtnDisabled: (bool) => set(produce(state=> {state.BtnDisabled = bool})),
 
 }))

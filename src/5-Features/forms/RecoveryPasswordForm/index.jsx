@@ -3,49 +3,42 @@ import Button from "@mui/material/Button";
 import DefaultField from "../../../7-Shared/ui/Fields/Default";
 import { useFormik } from "formik";
 import s from "./index.module.scss";
-import { authValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/auth";
-import { authFields } from "../../../6-Entities/fields/AuthFields";
 import { useEffect, useRef } from "react";
 import { useAlert, useCommon } from "../../../6-Entities/common";
 import { userService } from "../../../7-Shared/API/userService";
-import { saveUserData } from "../../../7-Shared/lib/saveUserData";
-import { useNavigate } from "react-router-dom";
+import { recoveryValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/recoveryPassword";
+import { recoveryPasswordFields } from "../../../6-Entities/fields/RecoveryFields";
+import {CONFIRM_YOU_ARE_NOT_A_ROBOT, FAILED_TO_CREATE_ACCOUNT, SEND_RECOVERY_PASSWORD_SUCCESS} from "../../../7-Shared/assests/Constants";
 
-const AuthForm = ({ children, captchaFunc }) => {
+const RecoveryPassword = ({ children, captchaFunc }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
 	const setFormBtnDisabled = useCommon((state) => state.setFormBtnDisabled);
-	const setType = useAlert((state) => state.setType);
-	const setMsg = useAlert((state) => state.setMessage);
+	const setAlert = useAlert((state) => state.setAlert);
 	const captchaRef = useRef(null);
-	const navigate = useNavigate();
 
 	useEffect(() => {
-		//Делаем кнопку submit неактивным
+	//Делаем кнопку submit неактивной
 		setFormBtnDisabled(true);
 	}, []);
 
-	const authFormik = useFormik({
+	const recoveryFormik = useFormik({
 		initialValues: {
-			authLogin: "",
-			authPassword: "",
+			email: "",
 		},
-		validationSchema: authValidationSchema,
+		validationSchema: recoveryValidationSchema,
 		onSubmit: (values) => {
 			const recaptchaValue = captchaRef.current.getValue();
 			if (!recaptchaValue) {
-				setType("error");
-				setMsg("Подтвердите, что вы не роборот");
+				setAlert({ type: "error", msg: CONFIRM_YOU_ARE_NOT_A_ROBOT });
 			} else {
 				console.log(values);
 				userService
-					.authUser(values)
+					.recoveryPassword(values)
 					.then((res) => {
-						saveUserData(res.data);
-						navigate("/main", { replace: true });
+						setAlert({ type: "success", msg: SEND_RECOVERY_PASSWORD_SUCCESS });
 					})
 					.catch((e) => {
-						setType("error");
-						setMsg("Не удалось создать аккаунт");
+						setAlert({ type: "error", msg: FAILED_TO_CREATE_ACCOUNT });
 						console.log(e);
 					});
 			}
@@ -58,19 +51,19 @@ const AuthForm = ({ children, captchaFunc }) => {
 			component="form"
 			noValidate
 			autoComplete="off"
-			onSubmit={authFormik.handleSubmit}
+			onSubmit={recoveryFormik.handleSubmit}
 		>
-			{authFields.map((field) => (
+			{recoveryPasswordFields.map((field) => (
 				<DefaultField
 					key={field.name}
 					name={field.name}
 					label={field.label}
 					fieldtype={field.fieldType}
-					setFieldTouched={authFormik.setFieldTouched}
-					value={authFormik.values[field.name]}
-					onChange={authFormik.handleChange}
-					touched={authFormik.touched[field.name]}
-					errors={authFormik.errors}
+					setFieldTouched={recoveryFormik.setFieldTouched}
+					value={recoveryFormik.values[field.name]}
+					onChange={recoveryFormik.handleChange}
+					touched={recoveryFormik.touched[field.name]}
+					errors={recoveryFormik.errors}
 				/>
 			))}
 			{children}
@@ -84,4 +77,4 @@ const AuthForm = ({ children, captchaFunc }) => {
 	);
 };
 
-export default AuthForm;
+export default RecoveryPassword;
