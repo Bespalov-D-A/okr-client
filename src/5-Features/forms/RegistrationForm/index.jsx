@@ -11,7 +11,11 @@ import { saveUserData } from "../../../7-Shared/lib/saveUserData";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import Typography from "@mui/material/Typography";
-import {CONFIRM_YOU_ARE_NOT_A_ROBOT, FAILED_TO_CREATE_ACCOUNT} from "../../../7-Shared/assests/Constants";
+import {
+	CONFIRM_YOU_ARE_NOT_A_ROBOT,
+	CREATE_ACCOUNT_SUCCESS,
+	FAILED_TO_CREATE_ACCOUNT,
+} from "../../../7-Shared/assests/Constants";
 
 const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
@@ -34,7 +38,8 @@ const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 				userService
 					.createUser(values)
 					.then((res) => {
-						saveUserData(res.data);
+						setAlert({ type: "success", msg: CREATE_ACCOUNT_SUCCESS });
+						saveUserData(res.data, setAlert);
 						navigate("/main", { replace: true });
 					})
 					.catch((e) => {

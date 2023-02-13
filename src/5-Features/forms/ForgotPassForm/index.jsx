@@ -3,16 +3,16 @@ import Button from "@mui/material/Button";
 import DefaultField from "../../../7-Shared/ui/Fields/Default";
 import { useFormik } from "formik";
 import s from "./index.module.scss";
-import { authValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/auth";
-import { authFields } from "../../../6-Entities/fields/AuthFields";
 import { useEffect, useRef } from "react";
 import { useAlert, useCommon } from "../../../6-Entities/common";
 import { userService } from "../../../7-Shared/API/userService";
 import { saveUserData } from "../../../7-Shared/lib/saveUserData";
 import { useNavigate } from "react-router-dom";
 import {CONFIRM_YOU_ARE_NOT_A_ROBOT, FAILED_AUTHENTICATION} from "../../../7-Shared/assests/Constants";
+import {forgotPassFields} from "../../../6-Entities/fields/ForgotPassFields";
+import {forgotPassValidationSchema} from "../../../7-Shared/config/forms/validationSchemes/forgotPass";
 
-const AuthForm = ({googleLogIn, children, captchaFunc }) => {
+const ForgotPassForm = ({ children, captchaFunc }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
 	const setFormBtnDisabled = useCommon((state) => state.setFormBtnDisabled);
 	const setAlert = useAlert((state) => state.setAlert);
@@ -24,12 +24,11 @@ const AuthForm = ({googleLogIn, children, captchaFunc }) => {
 		setFormBtnDisabled(true);
 	}, []);
 
-	const authFormik = useFormik({
+	const forgotFormik = useFormik({
 		initialValues: {
-			authLogin: "",
-			authPassword: "",
+			email: "",
 		},
-		validationSchema: authValidationSchema,
+		validationSchema: forgotPassValidationSchema,
 		onSubmit: (values) => {
 			const recaptchaValue = captchaRef.current.getValue();
 			if (!recaptchaValue) {
@@ -55,31 +54,30 @@ const AuthForm = ({googleLogIn, children, captchaFunc }) => {
 			component="form"
 			noValidate
 			autoComplete="off"
-			onSubmit={authFormik.handleSubmit}
+			onSubmit={forgotFormik.handleSubmit}
 		>
-			{googleLogIn()}
-			{authFields.map((field) => (
+			{forgotPassFields.map((field) => (
 				<DefaultField
 					key={field.name}
 					name={field.name}
 					label={field.label}
 					fieldtype={field.fieldType}
-					setFieldTouched={authFormik.setFieldTouched}
-					value={authFormik.values[field.name]}
-					onChange={authFormik.handleChange}
-					touched={authFormik.touched[field.name]}
-					errors={authFormik.errors}
+					setFieldTouched={forgotFormik.setFieldTouched}
+					value={forgotFormik.values[field.name]}
+					onChange={forgotFormik.handleChange}
+					touched={forgotFormik.touched[field.name]}
+					errors={forgotFormik.errors}
 				/>
 			))}
 			{children}
 			{captchaFunc(captchaRef)}
 			<div className={s["btn-wrap"]}>
 				<Button disabled={formBtnDisabled} type="submit" variant="contained">
-					Войти
+					Отправить запрос
 				</Button>
 			</div>
 		</Box>
 	);
 };
 
-export default AuthForm;
+export default ForgotPassForm;
