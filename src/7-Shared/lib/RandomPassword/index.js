@@ -1,1 +1,1 @@
-export const randomstring = Math.random().toString(36).slice(-8);
+export const randomString = () => Math.random().toString(36).slice(-8);
