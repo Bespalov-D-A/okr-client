@@ -1,5 +1,5 @@
 import axios from "axios";
-import { randomstring } from "../lib/RandomPassword";
+import {randomString} from "../lib/RandomPassword";
 
 const server = process.env.REACT_APP_SERVER;
 
@@ -8,7 +8,7 @@ export class userService {
     const response = await axios.post(`${server}/api/auth/local/register/`, {
       username: data.email,
       email: data.email,
-      password: data.password ? data.password : randomstring,
+      password: data.password ? data.password : randomString(),
     });
     return response;
   }

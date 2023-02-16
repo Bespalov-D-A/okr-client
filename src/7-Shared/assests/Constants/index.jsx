@@ -12,5 +12,6 @@ export const SUCCESS_ACCOUNT_CREATE = 'Ура! Аккаунт создан. Хо
 export const FAILED_TO_CREATE_ACCOUNT = "Не удалось создать аккаунт"
 export const FAILED_TO_GET_DATA_GOOGLE_ACCOUNT = "не удалось получить данные гугл аккаунта"
 export const FAILED_TO_GOOGLE_AUTH = "Ошибка авторизации гугл аккаунта"
+export const UNKNOWN_ERROR= "Возникла неизвестная ошибка"
 export const CONFIRM_YOU_ARE_NOT_A_ROBOT = "Подтвердите, что вы не робот"
 
