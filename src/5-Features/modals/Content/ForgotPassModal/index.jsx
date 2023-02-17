@@ -1,11 +1,10 @@
-import ForgotPassForm from "../../../forms/ForgotPassForm";
 import s from "./index.module.scss";
 
-const ForgotPassModalContent = ({ captchaFunc, children}) => {
+const ForgotPassModalContent = ({ forgotPassForm, captchaFunc, children}) => {
 	return (
-		<div className={s.content}>
+		<div id='forgot-modal-content' className={s.content}>
 			<div className={s["form-wrap"]}>
-				<ForgotPassForm children={children}  captchaFunc={captchaFunc} />
+				{forgotPassForm(captchaFunc, children)}
 			</div>
 		</div>
 	);

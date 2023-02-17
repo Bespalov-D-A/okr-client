@@ -25,6 +25,7 @@ const ModalUI = (props) => {
 							component="label"
 							className={s["close-btn"]}
 							onClick={handleClose}
+							id='close-modal'
 						>
 							<CloseIcon fontSize="large" className={s["close-ico"]} />
 						</IconButton>

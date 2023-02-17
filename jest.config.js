@@ -4,6 +4,7 @@
  */
 
 module.exports = {
+  testMatch: ["./__tests__/*.js"],
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -150,7 +151,8 @@ module.exports = {
   //   "**/__tests__/**/*.[jt]s?(x)",
   //   "**/?(*.)+(spec|test).[tj]s?(x)"
   // ],
-
+    testMatch: ["**/__tests__/**/*.js", "**/?(*.)(spec|test).js?(x)"],
+    //testMatch: ["***/Tests/**/*.js?(x)", "**/?(*.)(spec|test).js?(x)"]
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
   //   "/node_modules/"
@@ -191,4 +193,5 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+    //testPathIgnorePatterns: ["/node_modules/"],
 };

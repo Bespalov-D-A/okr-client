@@ -74,7 +74,7 @@ const AuthForm = ({googleLogIn, children, captchaFunc }) => {
 			{children}
 			{captchaFunc(captchaRef)}
 			<div className={s["btn-wrap"]}>
-				<Button disabled={formBtnDisabled} type="submit" variant="contained">
+				<Button id='btn-go-auth' disabled={formBtnDisabled} type="submit" variant="contained">
 					Войти
 				</Button>
 			</div>

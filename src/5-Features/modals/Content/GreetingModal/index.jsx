@@ -10,14 +10,14 @@ const GreetingModalContent = () => {
   const setOpen = useGreetingModal((state) => state.setOpen);
 
   return (
-    <div>
+    <div id='greeting-modal-content'>
       <div className={s.description}>
         <CustomScrollBar>
           <div>{lor}</div>
         </CustomScrollBar>
       </div>
       <div className={s["btn-wrap"]}>
-        <Button onClick={() => setOpen(false)} variant="contained">
+        <Button id='btn-greeting-ok' onClick={() => setOpen(false)} variant="contained">
           Понятно
         </Button>
       </div>
