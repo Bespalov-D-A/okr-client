@@ -13,7 +13,7 @@ const Forgot = () => {
 
 	return (
 		<div className={s.wrap}>
-			<Button onClick={handleClick} variant="text">
+			<Button id='btn-forgot' onClick={handleClick} variant="text">
 				забыл пароль
 			</Button>
 		</div>

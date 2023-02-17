@@ -77,7 +77,7 @@ const RegistrationForm = ({ captchaFunc, googleLogIn }) => {
 			))}
 			{captchaFunc(captchaRef)}
 			<div className={s["btn-wrap"]}>
-				<Button disabled={formBtnDisabled} type="submit" variant="contained">
+				<Button id='btn-go-reg' disabled={formBtnDisabled} type="submit" variant="contained">
 					Зарегистрироваться
 				</Button>
 			</div>
