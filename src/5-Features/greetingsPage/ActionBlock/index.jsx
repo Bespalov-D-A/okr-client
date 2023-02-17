@@ -14,12 +14,14 @@ const ActionBlock = () => {
 				onClick={() => setOpen(true)}
 				variant="contained"
 				className={`${s.btn} ${s.what}`}
+				id="btn-greeting"
 			>
 				Что это?
 			</Button>
 			<div className={s.wrap}>
 				<Button
 					onClick={() => navigate("/registration", { replace: true })}
+					id="btn-registration"
 					variant="contained"
 					className={s.btn}
 				>
@@ -29,6 +31,7 @@ const ActionBlock = () => {
 					onClick={() => setOpenLoginModal(true)}
 					variant="contained"
 					className={s.btn}
+					id="btn-login"
 				>
 					Войти
 				</Button>

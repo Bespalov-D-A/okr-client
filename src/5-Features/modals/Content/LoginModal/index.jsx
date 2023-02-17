@@ -1,11 +1,11 @@
 import AuthForm from "../../../forms/AuthForm";
 import s from "./index.module.scss";
 
-const LoginModalContent = ({googleLogIn, captchaFunc, children}) => {
+const LoginModalContent = ({authForm, googleLogIn, captchaFunc, children}) => {
 	return (
-		<div className={s.content}>
+		<div id='login-modal-content' className={s.content}>
 			<div className={s["form-wrap"]}>
-				<AuthForm children={children} googleLogIn={googleLogIn} captchaFunc={captchaFunc} />
+				{authForm(googleLogIn, captchaFunc, children)}
 			</div>
 		</div>
 	);
