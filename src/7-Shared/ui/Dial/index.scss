@@ -1,0 +1,14 @@
+.MuiSpeedDial-root {
+}
+
+.MuiSpeedDialAction-staticTooltipLabel {
+	word-break: unset;
+	white-space: nowrap;
+}
+
+.MuiSpeedDial-root > .MuiFab-circular {
+	width: 100px;
+	height: 100px;
+	background: var(--color-secondary);
+	color: #000;
+}

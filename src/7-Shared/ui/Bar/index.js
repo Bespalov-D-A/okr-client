@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 
 const Bar = ({children}) => {
 	return (
-		<AppBar position="static">
+		<AppBar position="fixed">
 			<Container maxWidth="xl">
 				<Toolbar>
 					{children}
