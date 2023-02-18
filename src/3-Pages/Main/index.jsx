@@ -2,6 +2,7 @@ import Container from "@mui/system/Container";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { reactLocalStorage } from "reactjs-localstorage";
+import AddTaskModalW from "../../4-Widgets/AddTaskModalW";
 import BarW from "../../4-Widgets/BarW";
 import DialW from "../../4-Widgets/DialW";
 import Alert from "../../5-Features/ui/Alert";
@@ -23,7 +24,7 @@ const Main = () => {
 			<Container className={s.content} maxWidth="xl">
 				main
 			</Container>
-
+			<AddTaskModalW />
 				<DialW />
 		</div>
 	);

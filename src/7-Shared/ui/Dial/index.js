@@ -1,9 +1,6 @@
 import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
-import MenuIcon from "@mui/icons-material/Menu";
-import EditIcon from "@mui/icons-material/Edit";
 import "./index.scss";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import Backdrop from "@mui/material/Backdrop";
@@ -22,7 +19,7 @@ const Dial = ({ children }) => {
 
   return (
     <>
-      <Backdrop open={open} />
+      <Backdrop onClick={handleClose} open={open} />
 
       <Container maxWidth="xl">
         <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}>
