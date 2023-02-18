@@ -3,7 +3,7 @@ import Bar from "../../7-Shared/ui/Bar"
 
 const BarW = () => {
 	return <Bar >
-		<LogoBlock imgStyle={{width: 40}}/>
+		<LogoBlock imgStyle={{width: 40, fill: '#fff'}} style={{flexFlow: 'row nowrap'}} fontStyle={{color: '#fff', paddingLeft: 12}}/>
 		</Bar>
 }
 
