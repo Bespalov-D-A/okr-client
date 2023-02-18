@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
+import { theme } from "../../../1-App/mui/WithTheme";
 import { useGreetingModal, useLoginModal } from "../../../6-Entities/modals";
 import s from "./index.module.scss";
 
@@ -13,6 +14,7 @@ const ActionBlock = () => {
 			<Button
 				onClick={() => setOpen(true)}
 				variant="contained"
+				style={{ background: theme.palette.primary.light }}
 				className={`${s.btn} ${s.what}`}
 				id="btn-greeting"
 			>
@@ -24,6 +26,7 @@ const ActionBlock = () => {
 					id="btn-registration"
 					variant="contained"
 					className={s.btn}
+					style={{ background: theme.palette.primary.dark }}
 				>
 					Регистрация
 				</Button>
