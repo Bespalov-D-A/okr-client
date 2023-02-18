@@ -9,7 +9,7 @@ describe("test greetings", () => {
     browser = await puppeteer.launch({
       executablePath: "/usr/bin/chromium-browser",
       product: "chrome",
-      //headless: false,
+      headless: false,
     });
     page = await browser.newPage();
   });
