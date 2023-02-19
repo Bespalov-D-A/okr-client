@@ -1,0 +1,16 @@
+.wrap {
+	display: flex;
+	align-items: flex-end;
+	& > *:not(:last-child) {
+		margin-right: 6px;
+	}
+	& > *:last-child {
+		margin-right: 0;
+	}
+}
+
+.ok {
+	border-radius: 6px;
+	color: #fff;
+	background: var(--color-primary);
+}

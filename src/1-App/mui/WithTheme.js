@@ -1,4 +1,5 @@
-import {createTheme} from "@mui/material/styles";
+import { teal } from "@mui/material/colors";
+import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
   palette: {
@@ -13,6 +14,12 @@ export const theme = createTheme({
       light: "#ffff72",
       dark: "#c8b900",
       contrastText: "#000",
-    }
-	}
-})
+    },
+    success: {
+      main: "#00e676",
+      light: "#33eb91",
+      dark: "#00a152",
+      contrastText: "#000",
+    },
+  },
+});
