@@ -8,25 +8,34 @@ import { useAlert, useCommon } from "../../../6-Entities/common";
 import { userService } from "../../../7-Shared/API/userService";
 import { saveUserData } from "../../../7-Shared/lib/saveUserData";
 import { useNavigate } from "react-router-dom";
-import {CONFIRM_YOU_ARE_NOT_A_ROBOT, FAILED_AUTHENTICATION} from "../../../7-Shared/assests/Constants";
+import {
+	CONFIRM_YOU_ARE_NOT_A_ROBOT,
+	FAILED_AUTHENTICATION,
+} from "../../../7-Shared/assests/Constants";
 import StepperUI from "../../../7-Shared/ui/StepperUI";
 
-const AddTaskForm = ({children, captchaFunc, AddTaskListForm, CreateTaskListForm}) => {
+const AddTaskForm = ({
+	children,
+	captchaFunc,
+	AddTaskListForm,
+	CreateTaskListForm,
+}) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
 	const setFormBtnDisabled = useCommon((state) => state.setFormBtnDisabled);
 	const setAlert = useAlert((state) => state.setAlert);
 	const captchaRef = useRef(null);
 	const navigate = useNavigate();
-	 const [activeStep, setActiveStep] = useState(0);
-	const steps = ['Лист', 'Тип', 'Задача']
-	const [createTaskListFormIsOpen, setCreateTaskListFormIsOpen] = useState(false)
+	const [activeStep, setActiveStep] = useState(0);
+	const steps = ["Лист", "Тип", "Задача"];
+	const [createTaskListFormIsOpen, setCreateTaskListFormIsOpen] =
+		useState(false);
 
 	useEffect(() => {
 		//Делаем кнопку submit неактивным
 		setFormBtnDisabled(true);
 	}, []);
 
-	const authFormik = useFormik({
+	const formik = useFormik({
 		initialValues: {
 			authLogin: "",
 			authPassword: "",
@@ -35,7 +44,7 @@ const AddTaskForm = ({children, captchaFunc, AddTaskListForm, CreateTaskListForm
 		onSubmit: (values) => {
 			const recaptchaValue = captchaRef.current.getValue();
 			if (!recaptchaValue) {
-				setAlert({type:'error', msg:CONFIRM_YOU_ARE_NOT_A_ROBOT})
+				setAlert({ type: "error", msg: CONFIRM_YOU_ARE_NOT_A_ROBOT });
 			} else {
 				userService
 					.authUser(values)
@@ -44,7 +53,7 @@ const AddTaskForm = ({children, captchaFunc, AddTaskListForm, CreateTaskListForm
 						navigate("/main", { replace: true });
 					})
 					.catch((e) => {
-						setAlert({type:'error', msg:FAILED_AUTHENTICATION})
+						setAlert({ type: "error", msg: FAILED_AUTHENTICATION });
 						console.log(e);
 					});
 			}
@@ -52,23 +61,32 @@ const AddTaskForm = ({children, captchaFunc, AddTaskListForm, CreateTaskListForm
 	});
 
 	return (
-		<Box
-			className={s["form"]}
-			component="form"
-			noValidate
-			autoComplete="off"
-			onSubmit={authFormik.handleSubmit}
-		>
-			<StepperUI activeStep={activeStep} steps={steps}/>
-			{AddTaskListForm(setCreateTaskListFormIsOpen)} 
-			{createTaskListFormIsOpen && CreateTaskListForm()}
-			{children}
+		<>
+			<Box
+				className={s["form"]}
+				component="form"
+				noValidate
+				autoComplete="off"
+				onSubmit={formik.handleSubmit}
+			>
+				<StepperUI activeStep={activeStep} steps={steps} />
+				{AddTaskListForm(createTaskListFormIsOpen, setCreateTaskListFormIsOpen)}
+				{children}
+			</Box>
+			{createTaskListFormIsOpen &&
+				CreateTaskListForm(setCreateTaskListFormIsOpen)}
 			<div className={s["btn-wrap"]}>
-				<Button id='btn-go-auth' disabled={formBtnDisabled} type="submit" variant="contained">
+				<Button
+					id="btn-go-auth"
+					onClick={() => formik.handleSubmit()}
+					disabled={formBtnDisabled}
+					type="submit"
+					variant="contained"
+				>
 					Далее
 				</Button>
 			</div>
-		</Box>
+		</>
 	);
 };
 
