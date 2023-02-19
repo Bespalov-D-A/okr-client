@@ -1,30 +1,28 @@
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import CreateIcon from "@mui/icons-material/Create";
-import Dial from "../../7-Shared/ui/Dial";
-import {useAddTaskModal} from "../../6-Entities/modals";
+import { useAddTaskModal } from "../../6-Entities/modals";
 
-const DialActions = ({parent}) => {
+const DialActions = ({ parent }) => {
 	const setOpen = useAddTaskModal((state) => state.setOpen);
 
-const actions = [
-	{
-		icon: <PlaylistAddIcon />,
-		name: "Новый лист задач",
-		action: () => {
-			setOpen(true)
+	const actions = [
+		{
+			icon: <PlaylistAddIcon />,
+			name: "Новый лист задач",
+			action: () => {
+				alert("задача");
+			},
 		},
-	},
-	{
-		icon: <CreateIcon />,
-		name: "Новая задача",
-		action: () => {
-			alert("задача");
+		{
+			icon: <CreateIcon />,
+			name: "Новая задача",
+			action: () => {
+				setOpen(true);
+			},
 		},
-	},
-];
+	];
 
+	return <>{parent(actions)}</>;
+};
 
-	return <>{parent(actions)}</>
-}
-
-export default DialActions
+export default DialActions;
