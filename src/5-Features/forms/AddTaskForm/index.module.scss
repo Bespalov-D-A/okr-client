@@ -1,6 +1,9 @@
 .form {
 	display: flex;
 	flex-flow: column wrap;
+	& > * {
+		margin-bottom: 12px;
+	}
 }
 
 .btn-wrap {

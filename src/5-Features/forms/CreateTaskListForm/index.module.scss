@@ -1,6 +1,10 @@
 .wrap {
 	display: flex;
 	align-items: flex-end;
+	& > *:first-child {
+		width: 100%;
+	}
+
 	& > *:not(:last-child) {
 		margin-right: 6px;
 	}

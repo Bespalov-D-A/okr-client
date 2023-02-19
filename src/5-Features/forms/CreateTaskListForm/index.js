@@ -1,11 +1,11 @@
-import MoreTimeIcon from '@mui/icons-material/MoreTime';
-import CheckIcon from '@mui/icons-material/Check';
-import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import {useFormik} from "formik";
-import {createTaskListFields} from "../../../6-Entities/fields/CreateTaskListFields";
-import {createTaskListValidationSchema} from "../../../7-Shared/config/forms/validationSchemes/createTaskList";
+import MoreTimeIcon from "@mui/icons-material/MoreTime";
+import CheckIcon from "@mui/icons-material/Check";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import { useFormik } from "formik";
+import { createTaskListFields } from "../../../6-Entities/fields/CreateTaskListFields";
+import { createTaskListValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/createTaskList";
 import DefaultField from "../../../7-Shared/ui/Fields/Default";
-import s from './index.module.scss'
+import s from "./index.module.scss";
 import IconButton from "@mui/material/IconButton";
 
 const CreateTaskListForm = () => {
@@ -13,17 +13,15 @@ const CreateTaskListForm = () => {
 		initialValues: {
 			name: "",
 			date: "",
-			time: ''
+			time: "",
 		},
 		validationSchema: createTaskListValidationSchema,
-		onSubmit: (values) => {
-
-		},
+		onSubmit: (values) => {},
 	});
 
 	return (
 		<div className={s.wrap}>
-					{createTaskListFields.map((field) => (
+			{createTaskListFields.map((field) => (
 				<DefaultField
 					key={field.name}
 					name={field.name}
@@ -36,13 +34,18 @@ const CreateTaskListForm = () => {
 					errors={formik.errors}
 				/>
 			))}
-	<IconButton variant='contained' color="primary" aria-label="upload picture" component="label">
-				<MoreTimeIcon/>
-				</IconButton>
+			<IconButton color="primary" aria-label="upload picture" component="label">
+				<MoreTimeIcon />
+			</IconButton>
 
-			<IconButton className={s.ok} color="primary" aria-label="upload picture" component="label">
-				<CheckIcon/>
-				</IconButton>
+			<IconButton
+				className={s.ok}
+				color="primary"
+				aria-label="upload picture"
+				component="label"
+			>
+				<CheckIcon />
+			</IconButton>
 		</div>
 	);
 };

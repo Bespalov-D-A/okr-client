@@ -17,7 +17,7 @@ const AddTaskForm = ({children, captchaFunc, AddTaskListForm, CreateTaskListForm
 	const setAlert = useAlert((state) => state.setAlert);
 	const captchaRef = useRef(null);
 	const navigate = useNavigate();
-	 const [activeStep, setActiveStep] = useState(1);
+	 const [activeStep, setActiveStep] = useState(0);
 	const steps = ['Лист', 'Тип', 'Задача']
 	const [createTaskListFormIsOpen, setCreateTaskListFormIsOpen] = useState(false)
 
@@ -63,7 +63,6 @@ const AddTaskForm = ({children, captchaFunc, AddTaskListForm, CreateTaskListForm
 			{AddTaskListForm(setCreateTaskListFormIsOpen)} 
 			{createTaskListFormIsOpen && CreateTaskListForm()}
 			{children}
-			{captchaFunc(captchaRef)}
 			<div className={s["btn-wrap"]}>
 				<Button id='btn-go-auth' disabled={formBtnDisabled} type="submit" variant="contained">
 					Далее
