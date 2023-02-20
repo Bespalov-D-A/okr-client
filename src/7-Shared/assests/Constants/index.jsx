@@ -6,6 +6,7 @@ export const maxFunc = (num) => `Ограничение символов: ${num}
 
 export const FAILED_AUTHENTICATION = 'Ошика аутентификации'
 export const FAILED_GET_TASK_LISTS = 'Ошибка загрузки листов задач'
+export const FAILED_GET_TASKS = 'Ошибка загрузки задач'
 export const FAILED_GET_TASK_TYPES = 'Ошибка загрузки типов задач'
 export const FAILED_CREATE_TASK_LIST = 'Ошибка создания листа задач'
 export const FAILED_CREATE_TASK_TYPE = 'Ошибка создания типа задач'

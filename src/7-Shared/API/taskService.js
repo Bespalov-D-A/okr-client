@@ -68,4 +68,12 @@ export class taskService {
     );
     return response;
   }
+  static async getTasks(token) {
+    const response = await axios.get(`${server}/api/tasks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  }
 }

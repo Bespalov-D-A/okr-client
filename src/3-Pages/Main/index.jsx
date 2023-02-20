@@ -5,6 +5,7 @@ import { reactLocalStorage } from "reactjs-localstorage";
 import AddTaskModalW from "../../4-Widgets/AddTaskModalW";
 import BarW from "../../4-Widgets/BarW";
 import DialW from "../../4-Widgets/DialW";
+import TaskList from "../../5-Features/lists/TasksList";
 import Alert from "../../5-Features/ui/Alert";
 import s from "./index.module.scss";
 
@@ -23,6 +24,7 @@ const Main = () => {
 			<BarW />
 			<Container className={s.content} maxWidth="xl">
 				main
+				<TaskList/>
 			</Container>
 			<AddTaskModalW />
 			<DialW />
