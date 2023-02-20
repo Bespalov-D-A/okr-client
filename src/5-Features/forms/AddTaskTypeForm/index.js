@@ -15,6 +15,7 @@ const promiseOptions = (e, setAlert) => {
 			res.data.data.map((option) => ({
 				value: option.attributes.title,
 				label: option.attributes.title,
+				id: option.id
 			}))
 		)
 		.catch((e) => {

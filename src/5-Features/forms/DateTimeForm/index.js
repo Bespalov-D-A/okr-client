@@ -9,18 +9,18 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import Typography from "@mui/material/Typography";
 import s from "./index.module.scss";
 
-const DateTimeForm = ({ listTime, setListTime, listDate, setListDate }) => {
+const DateTimeForm = ({ title, time, setTime, date, setDate }) => {
 	return (
-		<div>
+		<div className={s.wrap}>
 			<Typography className={s.title} component="p">
-				Когда должен быть выполнен этот лист?
+				{title && title}
 			</Typography>
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<MobileDatePicker
 					label="Выберите дату"
-					value={listDate}
+					value={date}
 					onChange={(newValue) => {
-						setListDate(newValue);
+						setDate(newValue);
 					}}
 					renderInput={(params) => (
 						<TextField {...params} style={{ marginRight: 12 }} />
@@ -29,9 +29,9 @@ const DateTimeForm = ({ listTime, setListTime, listDate, setListDate }) => {
 				<MobileTimePicker
 					label="Выберите время"
 					ampm={false}
-					value={listTime}
+					value={time}
 					onChange={(newValue) => {
-						setListTime(newValue);
+						setTime(newValue);
 					}}
 					renderInput={(params) => <TextField {...params} />}
 				/>

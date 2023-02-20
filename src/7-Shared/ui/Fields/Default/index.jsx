@@ -8,6 +8,7 @@ const DefaultField = (props) => {
 		onChange,
 		setFieldTouched,
 		errors,
+		multiline,
 		touched,
 		required,
 		fieldtype,
@@ -20,6 +21,7 @@ const DefaultField = (props) => {
 			id={name}
 			name={name}
 			className={s.field}
+			multiline={multiline && multiline}
 			value={value}
 			onChange={onChange}
 			required={required}

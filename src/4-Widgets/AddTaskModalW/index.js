@@ -3,6 +3,7 @@ import AddTaskForm from "../../5-Features/forms/AddTaskForm";
 import AddTaskListForm from "../../5-Features/forms/AddTaskListForm";
 import AddTaskTypeForm from "../../5-Features/forms/AddTaskTypeForm";
 import CreateTaskListForm from "../../5-Features/forms/CreateTaskListForm";
+import CreateTaskTaskForm from "../../5-Features/forms/CreateTaskTaskForm";
 import CreateTaskTypeForm from "../../5-Features/forms/CreateTaskTypeForm";
 import DateTimeForm from "../../5-Features/forms/DateTimeForm";
 import AddTaskModal from "../../5-Features/modals/AddTaskModal";
@@ -43,20 +44,33 @@ const AddTaskModalW = () => {
 						)}
 						CreateTaskListForm={(closeCreateForm) => (
 							<CreateTaskListForm
-								DateTime={(listTime, setListTime, listDate, setListDate) => (
+								DateTime={(title, time, setTime, date, setDate) => (
 									<DateTimeForm
-										listTime={listTime}
-										setListTime={setListTime}
-										listDate={listDate}
-										setListDate={setListDate}
+										title={title}
+										time={time}
+										setTime={setTime}
+										date={date}
+										setDate={setDate}
 									/>
 								)}
 								closeCreateForm={closeCreateForm}
 							/>
 						)}
-CreateTaskTypeForm={(closeCreateForm) => (
-							<CreateTaskTypeForm
-								closeCreateForm={closeCreateForm}
+						CreateTaskTypeForm={(closeCreateForm) => (
+							<CreateTaskTypeForm closeCreateForm={closeCreateForm} />
+						)}
+						CreateTaskTaskForm={(formik) => (
+							<CreateTaskTaskForm
+								formik={formik}
+								DateTime={(title, time, setTime, date, setDate) => (
+									<DateTimeForm
+										title={title}
+										time={time}
+										setTime={setTime}
+										date={date}
+										setDate={setDate}
+									/>
+								)}
 							/>
 						)}
 						children={children}

@@ -14,7 +14,10 @@ const promiseOptions = (e, setAlert) => {
 		.then((res) =>
 			res.data.data.map((option) => ({
 				value: option.attributes.title,
-				label: option.attributes.title,
+				label:
+					option.attributes.title +
+					` - ${option.attributes.date} ${option.attributes.time}`,
+				id: option.id,
 			}))
 		)
 		.catch((e) => {
@@ -44,7 +47,7 @@ const AddTaskListForm = ({
 				defaultOptions
 				value={formik.values[id]}
 				onBlur={(e) => {
-					formik.getFieldProps(id).onBlur(e)
+					formik.getFieldProps(id).onBlur(e);
 				}}
 				onChange={(e) => {
 					const event = new Event("change", { bubbles: true });

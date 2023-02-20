@@ -13,7 +13,10 @@ import { useFormik } from "formik";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { useState } from "react";
 import { useAlert } from "../../../6-Entities/common";
-import { FAILED_CREATE_TASK_LIST } from "../../../7-Shared/assests/Constants";
+import {
+	FAILED_CREATE_TASK_LIST,
+	TITLE_FROM_DATETIME_LIST,
+} from "../../../7-Shared/assests/Constants";
 
 const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 	const [addTime, setAddTime] = useState(false);
@@ -32,7 +35,7 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 			const token = reactLocalStorage.get("jwt");
 			const newValues = {
 				...values,
-				date: date.format(listDate, "DD.MM.YYYY"),
+				date: date.format(new Date(listDate), "DD.MM.YYYY"),
 				time: date.format(new Date(listTime), "HH:mm"),
 			};
 			taskService
@@ -47,6 +50,8 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 		},
 	});
 
+	const title = TITLE_FROM_DATETIME_LIST;
+
 	return (
 		<div>
 			<Box
@@ -57,7 +62,8 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 				autoComplete="off"
 				onSubmit={formik.handleSubmit}
 			>
-				{addTime && DateTime(listTime, setListTime, listDate, setListDate)}
+				{addTime &&
+					DateTime(title, listTime, setListTime, listDate, setListDate)}
 				<div className={s["fields"]}>
 					{createTaskListFields.map((field) => (
 						<DefaultField
