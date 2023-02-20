@@ -14,20 +14,26 @@ const AddTaskModalW = () => {
 				addTaskForm={(captchaFunc, children) => (
 					<AddTaskForm
 						AddTaskListForm={(
+							id,
+							formik,
 							isOpenCreateTaskForm,
 							setIsOpenCreateTaskForm
 						) => (
 							<AddTaskListForm
+								id={id}
+								formik={formik}
 								taskListFormIsOpen={isOpenCreateTaskForm}
 								setTaskListFormIsOpen={setIsOpenCreateTaskForm}
 							/>
 						)}
 						CreateTaskListForm={(closeCreateForm) => (
 							<CreateTaskListForm
-								DateTime={(startDate, setStartDate) => (
+								DateTime={(listTime, setListTime, listDate, setListDate) => (
 									<DateTimeForm
-										setStartDate={setStartDate}
-										startDate={startDate}
+										listTime={listTime}
+										setListTime={setListTime}
+										listDate={listDate}
+										setListDate={setListDate}
 									/>
 								)}
 								closeCreateForm={closeCreateForm}

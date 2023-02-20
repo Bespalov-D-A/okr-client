@@ -1,5 +1,4 @@
 import Button from "@mui/material/Button";
-import { useEffect } from "react";
 import AsyncSelect from "react-select/async";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { useAlert } from "../../../6-Entities/common";
@@ -25,7 +24,12 @@ const promiseOptions = (e, setAlert) => {
 		});
 };
 
-const AddTaskListForm = ({ taskListFormIsOpen, setTaskListFormIsOpen }) => {
+const AddTaskListForm = ({
+	id,
+	formik,
+	taskListFormIsOpen,
+	setTaskListFormIsOpen,
+}) => {
 	const setAlert = useAlert((state) => state.setAlert);
 
 	return (
@@ -33,9 +37,24 @@ const AddTaskListForm = ({ taskListFormIsOpen, setTaskListFormIsOpen }) => {
 			<AsyncSelect
 				key={taskListFormIsOpen}
 				isSearchable={false}
+				name={id}
+				id={id}
 				placeholder="Выбрать лист задач"
 				cacheOptions
 				defaultOptions
+				value={formik.values[id]}
+				onBlur={(e) => {
+					formik.getFieldProps(id).onBlur(e)
+				}}
+				onChange={(e) => {
+					const event = new Event("change", { bubbles: true });
+					Object.defineProperty(event, "target", {
+						value: { value: e },
+						writable: false,
+					});
+					formik.handleChange(id);
+					formik.setFieldValue(id, e);
+				}}
 				loadOptions={(e) => promiseOptions(e, setAlert)}
 			/>
 			<div className={s.or}>или</div>

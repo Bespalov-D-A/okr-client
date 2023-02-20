@@ -13,6 +13,7 @@ import {
 	FAILED_AUTHENTICATION,
 } from "../../../7-Shared/assests/Constants";
 import StepperUI from "../../../7-Shared/ui/StepperUI";
+import { addTaskValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/addTask";
 
 const AddTaskForm = ({
 	children,
@@ -37,10 +38,9 @@ const AddTaskForm = ({
 
 	const formik = useFormik({
 		initialValues: {
-			authLogin: "",
-			authPassword: "",
+			selectedTaskList: null,
 		},
-		validationSchema: authValidationSchema,
+		validationSchema: addTaskValidationSchema,
 		onSubmit: (values) => {
 			const recaptchaValue = captchaRef.current.getValue();
 			if (!recaptchaValue) {
@@ -70,16 +70,32 @@ const AddTaskForm = ({
 				onSubmit={formik.handleSubmit}
 			>
 				<StepperUI activeStep={activeStep} steps={steps} />
-				{AddTaskListForm(createTaskListFormIsOpen, setCreateTaskListFormIsOpen)}
+				{AddTaskListForm(
+					"selectedTaskList",
+					formik,
+					createTaskListFormIsOpen,
+					setCreateTaskListFormIsOpen
+				)}
 				{children}
 			</Box>
 			{createTaskListFormIsOpen &&
 				CreateTaskListForm(setCreateTaskListFormIsOpen)}
 			<div className={s["btn-wrap"]}>
+				{activeStep > 0 && (
+					<Button
+						id="btn-go-auth"
+						onClick={() => setActiveStep((prev) => prev - 1)}
+						disabled={!formik.values.selectedTaskList}
+						type="submit"
+						variant="contained"
+					>
+						Назад
+					</Button>
+				)}
 				<Button
 					id="btn-go-auth"
-					onClick={() => formik.handleSubmit()}
-					disabled={formBtnDisabled}
+					onClick={() => setActiveStep((prev) => prev + 1)}
+					disabled={!formik.values.selectedTaskList}
 					type="submit"
 					variant="contained"
 				>

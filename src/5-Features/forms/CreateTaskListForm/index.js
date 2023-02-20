@@ -1,4 +1,6 @@
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
+import date from "date-and-time";
+import AlarmOffIcon from "@mui/icons-material/AlarmOff";
 import CheckIcon from "@mui/icons-material/Check";
 import { createTaskListFields } from "../../../6-Entities/fields/CreateTaskListFields";
 import { createTaskListValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/createTaskList";
@@ -10,10 +12,15 @@ import Box from "@mui/material/Box";
 import { useFormik } from "formik";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { useState } from "react";
+import { useAlert } from "../../../6-Entities/common";
+import { FAILED_CREATE_TASK_LIST } from "../../../7-Shared/assests/Constants";
 
 const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 	const [addTime, setAddTime] = useState(false);
-	const [startDate, setStartDate] = useState(new Date())
+	const [listDate, setListDate] = useState(new Date());
+	const [listTime, setListTime] = useState(new Date());
+	const setAlert = useAlert((state) => state.setAlert);
+
 	const formik = useFormik({
 		initialValues: {
 			title: "",
@@ -22,15 +29,21 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 		},
 		validationSchema: createTaskListValidationSchema,
 		onSubmit: (values) => {
-			console.log(values);
 			const token = reactLocalStorage.get("jwt");
+			const newValues = {
+				...values,
+				date: date.format(listDate, "DD.MM.YYYY"),
+				time: date.format(new Date(listTime), "HH:mm"),
+			};
 			taskService
-				.createTaskList(token, values)
+				.createTaskList(token, newValues)
 				.then((res) => {
 					closeCreateForm(false);
-					console.log(res);
 				})
-				.catch((e) => console.log(e));
+				.catch((e) => {
+					console.log(e);
+					setAlert({ type: "error", FAILED_CREATE_TASK_LIST });
+				});
 		},
 	});
 
@@ -44,37 +57,35 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 				autoComplete="off"
 				onSubmit={formik.handleSubmit}
 			>
-				{createTaskListFields.map((field) => (
-					<DefaultField
-						key={field.name}
-						name={field.name}
-						label={field.label}
-						fieldtype={field.fieldType}
-						setFieldTouched={formik.setFieldTouched}
-						value={formik.values[field.name]}
-						onChange={formik.handleChange}
-						touched={formik.touched[field.name]}
-						errors={formik.errors}
-					/>
-				))}
-				<IconButton
-					color="primary"
-					aria-label="upload picture"
-					component="label"
-					onClick={() => setAddTime(!addTime)}
-				>
-					<MoreTimeIcon />
-				</IconButton>
+				{addTime && DateTime(listTime, setListTime, listDate, setListDate)}
+				<div className={s["fields"]}>
+					{createTaskListFields.map((field) => (
+						<DefaultField
+							key={field.name}
+							name={field.name}
+							label={field.label}
+							fieldtype={field.fieldType}
+							setFieldTouched={formik.setFieldTouched}
+							value={formik.values[field.name]}
+							onChange={formik.handleChange}
+							touched={formik.touched[field.name]}
+							errors={formik.errors}
+						/>
+					))}
+					<IconButton
+						color="primary"
+						aria-label="upload picture"
+						component="label"
+						onClick={() => setAddTime(!addTime)}
+					>
+						{addTime ? <AlarmOffIcon color="error" /> : <MoreTimeIcon />}
+					</IconButton>
 
-				<IconButton
-					className={s.ok}
-					color="primary"
-					type="submit"
-				>
-					<CheckIcon />
-				</IconButton>
+					<IconButton className={s.ok} color="primary" type="submit">
+						<CheckIcon />
+					</IconButton>
+				</div>
 			</Box>
-			{addTime && DateTime(startDate, setStartDate)}
 		</div>
 	);
 };
