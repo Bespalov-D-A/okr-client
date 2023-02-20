@@ -12,7 +12,7 @@ export class taskService {
     return response;
   }
 
-static async getTaskTypes(token) {
+  static async getTaskTypes(token) {
     const response = await axios.get(`${server}/api/task-types`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -37,9 +37,25 @@ static async getTaskTypes(token) {
     return response;
   }
 
-static async createTaskType(token, data) {
+  static async createTaskType(token, data) {
     const response = await axios.post(
       `${server}/api/task-types`,
+      {
+        data,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  }
+
+  static async createTask(token, data) {
+    const response = await axios.post(
+      `${server}/api/tasks`,
       {
         data,
       },

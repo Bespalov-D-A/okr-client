@@ -14,6 +14,7 @@ export const FAILED_SAVE_USER_DATA_TO_CLIENT = 'Пользователь соз�
 export const FAILED_SEND_RECOVERY_PASS_LINK = 'Не удалось отправить ссылку для зброса пароля'
 export const SUCCESS_SENT_RECOVERY_PASS_LINK = 'На указанную почту отправлена ссылка для сброса пароля'
 export const SUCCESS_ACCOUNT_CREATE = 'Ура! Аккаунт создан. Хорошего дня :)'
+export const SUCCESS_TASK_CREATE = 'Задача добавлена'
 export const FAILED_TO_CREATE_ACCOUNT = "Не удалось создать аккаунт"
 export const FAILED_TO_GET_DATA_GOOGLE_ACCOUNT = "не удалось получить данные гугл аккаунта"
 export const FAILED_TO_GOOGLE_AUTH = "Ошибка авторизации гугл аккаунта"

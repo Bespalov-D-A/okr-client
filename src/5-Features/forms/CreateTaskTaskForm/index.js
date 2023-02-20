@@ -4,17 +4,8 @@ import AlarmOffIcon from "@mui/icons-material/AlarmOff";
 import DefaultField from "../../../7-Shared/ui/Fields/Default";
 import s from "./index.module.scss";
 import IconButton from "@mui/material/IconButton";
-import { taskService } from "../../../7-Shared/API/taskService";
 import Box from "@mui/material/Box";
-import { useFormik } from "formik";
-import { reactLocalStorage } from "reactjs-localstorage";
-import { useAlert } from "../../../6-Entities/common";
-import {
-	FAILED_CREATE_TASK_TYPE,
-	TITLE_FROM_DATETIME_TASK,
-} from "../../../7-Shared/assests/Constants";
-import { createTaskTypeValidationSchema } from "../../../7-Shared/config/forms/validationSchemes/createTaskType";
-import { createTaskTypeFields } from "../../../6-Entities/fields/CreateTaskTypeFields";
+import { TITLE_FROM_DATETIME_TASK } from "../../../7-Shared/assests/Constants";
 import { createTaskTaskFields } from "../../../6-Entities/fields/CreateTaskTaskFields";
 import { useEffect, useState } from "react";
 import date from "date-and-time";
