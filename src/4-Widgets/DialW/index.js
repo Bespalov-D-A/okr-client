@@ -1,28 +1,10 @@
 import Dial from "../../7-Shared/ui/Dial";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import CreateIcon from "@mui/icons-material/Create";
-
-const actions = [
-	{
-		icon: <PlaylistAddIcon />,
-		name: "Новый лист задач",
-		action: () => {
-			alert("задача");
-		},
-	},
-	{
-		icon: <CreateIcon />,
-		name: "Новая задача",
-		action: () => {
-			alert("задача");
-		},
-	},
-];
+import DialActions from "../../5-Features/DialActions";
 
 const DialW = () => {
 	return (
 		<div style={{ marginBottom: 24 }}>
-			<Dial>{actions}</Dial>
+			<DialActions parent={(actions)=><Dial>{actions}</Dial>}/> 
 		</div>
 	);
 };
