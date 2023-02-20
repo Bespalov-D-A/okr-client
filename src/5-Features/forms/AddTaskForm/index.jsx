@@ -19,7 +19,9 @@ const AddTaskForm = ({
 	children,
 	captchaFunc,
 	AddTaskListForm,
+	AddTaskTypeForm,
 	CreateTaskListForm,
+	CreateTaskTypeForm
 }) => {
 	const formBtnDisabled = useCommon((state) => state.formBtnDisabled);
 	const setFormBtnDisabled = useCommon((state) => state.setFormBtnDisabled);
@@ -30,6 +32,8 @@ const AddTaskForm = ({
 	const steps = ["Лист", "Тип", "Задача"];
 	const [createTaskListFormIsOpen, setCreateTaskListFormIsOpen] =
 		useState(false);
+	const [createTaskTypeFormIsOpen, setCreateTaskTypeFormIsOpen] =
+		useState(false);
 
 	useEffect(() => {
 		//Делаем кнопку submit неактивным
@@ -39,6 +43,7 @@ const AddTaskForm = ({
 	const formik = useFormik({
 		initialValues: {
 			selectedTaskList: null,
+			selectedTaskType: null
 		},
 		validationSchema: addTaskValidationSchema,
 		onSubmit: (values) => {
@@ -70,16 +75,28 @@ const AddTaskForm = ({
 				onSubmit={formik.handleSubmit}
 			>
 				<StepperUI activeStep={activeStep} steps={steps} />
-				{AddTaskListForm(
-					"selectedTaskList",
-					formik,
-					createTaskListFormIsOpen,
-					setCreateTaskListFormIsOpen
-				)}
-				{children}
+				{activeStep === 0 &&
+					AddTaskListForm(
+						"selectedTaskList",
+						formik,
+						createTaskListFormIsOpen,
+						setCreateTaskListFormIsOpen
+					)}
+				{activeStep === 1 &&
+					AddTaskTypeForm(
+						"selectedTaskType",
+						formik,
+						createTaskTypeFormIsOpen,
+						setCreateTaskTypeFormIsOpen
+					)}
+
 			</Box>
-			{createTaskListFormIsOpen &&
+			{createTaskListFormIsOpen && activeStep === 0 &&
 				CreateTaskListForm(setCreateTaskListFormIsOpen)}
+{createTaskTypeFormIsOpen && activeStep === 1 &&
+				CreateTaskTypeForm(setCreateTaskTypeFormIsOpen)}
+
+
 			<div className={s["btn-wrap"]}>
 				{activeStep > 0 && (
 					<Button

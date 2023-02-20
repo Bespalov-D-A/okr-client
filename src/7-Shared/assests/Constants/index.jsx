@@ -6,7 +6,9 @@ export const maxFunc = (num) => `Ограничение символов: ${num}
 
 export const FAILED_AUTHENTICATION = 'Ошика аутентификации'
 export const FAILED_GET_TASK_LISTS = 'Ошибка загрузки листов задач'
+export const FAILED_GET_TASK_TYPES = 'Ошибка загрузки типов задач'
 export const FAILED_CREATE_TASK_LIST = 'Ошибка создания листа задач'
+export const FAILED_CREATE_TASK_TYPE = 'Ошибка создания типа задач'
 export const FAILED_SAVE_USER_DATA_TO_CLIENT = 'Пользователь создан, но не удалось сохранить данные пользователя на клиенте'
 export const FAILED_SEND_RECOVERY_PASS_LINK = 'Не удалось отправить ссылку для зброса пароля'
 export const SUCCESS_SENT_RECOVERY_PASS_LINK = 'На указанную почту отправлена ссылка для сброса пароля'
