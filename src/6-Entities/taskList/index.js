@@ -9,5 +9,11 @@ export const useTaskList = create((set) => ({
         state.list = list;
       })
     ),
+  taskSwitcher: false,
+  setTaskSwitcher: () =>
+    set(
+      produce((state) => {
+        state.taskSwitcher = !state.taskSwitcher;
+      })
+    ),
 }));
-

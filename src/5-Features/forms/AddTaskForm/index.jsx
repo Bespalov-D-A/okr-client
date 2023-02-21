@@ -15,6 +15,7 @@ import {
 	SUCCESS_TASK_CREATE,
 } from "../../../7-Shared/assests/Constants";
 import { useAddTaskModal } from "../../../6-Entities/modals";
+import { useTaskList } from "../../../6-Entities/taskList";
 
 const AddTaskForm = ({
 	children,
@@ -26,6 +27,7 @@ const AddTaskForm = ({
 	CreateTaskTaskForm,
 }) => {
 	const setFormBtnDisabled = useCommon((state) => state.setFormBtnDisabled);
+	const setTaskSwitcher = useTaskList((state) => state.setTaskSwitcher);
 	const setAlert = useAlert((state) => state.setAlert);
 	const navigate = useNavigate();
 	const setOpen = useAddTaskModal((state) => state.setOpen);
@@ -65,6 +67,7 @@ const AddTaskForm = ({
 				.then((res) => {
 					setOpen(false);
 					setAlert({ type: "success", msg: SUCCESS_TASK_CREATE });
+					setTaskSwitcher();
 				})
 				.catch((e) => {
 					setAlert({ type: "error", msg: FAILED_CREATE_TASK });

@@ -12,6 +12,7 @@ const TaskList = ({TaskItem}) => {
 	const taskList = useTaskList((state) => state.list);
 	const setTaskList = useTaskList((state) => state.setList);
 	const setAlert = useAlert((state) => state.setAlert);
+	const taskSwitcher = useTaskList(state => state.taskSwitcher)
 
 	const [isFetch, isLoad, error] = useLoader(
 		FAILED_GET_TASKS,
@@ -24,7 +25,7 @@ const TaskList = ({TaskItem}) => {
 	);
 	useEffect(() => {
 		isFetch();
-	}, []);
+	}, [taskSwitcher]);
 
 	return (
 		<Container className={s.list} maxWidth="xl">
