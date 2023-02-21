@@ -1,0 +1,17 @@
+.card {
+	position: relative;
+	padding-top: 24px;
+	margin-bottom: 18px;
+}
+
+.bar {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	top: 0;
+	left: 12px;
+	right: 24px;
+	height: 24px;
+	font-size: 12px;
+	border-bottom: solid 1px var(--color-gray6);
+}

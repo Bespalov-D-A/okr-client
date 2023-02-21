@@ -8,7 +8,7 @@ import { FAILED_GET_TASKS } from "../../../7-Shared/assests/Constants";
 import { useLoader } from "../../../7-Shared/hooks/useLoad";
 import s from "./index.module.scss";
 
-const TaskList = () => {
+const TaskList = ({TaskItem}) => {
 	const taskList = useTaskList((state) => state.list);
 	const setTaskList = useTaskList((state) => state.setList);
 	const setAlert = useAlert((state) => state.setAlert);
@@ -19,7 +19,6 @@ const TaskList = () => {
 		async (params) => {
 			const token = reactLocalStorage.get("jwt");
 			const response = await taskService.getTasks(token);
-			console.log(response);
 			setTaskList(response.data.data);
 		}
 	);
@@ -29,10 +28,7 @@ const TaskList = () => {
 
 	return (
 		<Container className={s.list} maxWidth="xl">
-			{taskList &&
-				taskList.map((task) => (
-					<div key={task.id}>{task.attributes.title}</div>
-				))}
+			{taskList && taskList.map(TaskItem)}
 		</Container>
 	);
 };
