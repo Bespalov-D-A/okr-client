@@ -3,7 +3,7 @@ import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import ContentCut from "@mui/icons-material/ContentCut";
 
-const TaskItemMenu = ({open, handleClose, anchorEl}) => {
+const TaskItemMenu = ({id, open, handleClose, anchorEl}) => {
 	return <Menu
 				id="basic-menu"
 				anchorEl={anchorEl}

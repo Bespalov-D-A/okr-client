@@ -68,12 +68,29 @@ export class taskService {
     );
     return response;
   }
+
   static async getTasks(token) {
     const response = await axios.get(`${server}/api/tasks`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+    return response;
+  }
+
+  static async updateTask(token, taskId, data) {
+    const response = await axios.put(
+      `${server}/api/tasks/${taskId}`,
+      {
+        data,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return response;
   }
 }
