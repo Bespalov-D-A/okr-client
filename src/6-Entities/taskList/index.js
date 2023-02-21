@@ -19,4 +19,18 @@ export const useTaskList = create((set, get) => ({
         state.taskSwitcher = !state.taskSwitcher;
       })
     ),
+  selectedTaskTypeId: null,
+  setSelectedTaskTypeId: (typeId) =>
+    set(
+      produce((state) => {
+        state.selectedTaskTypeId = typeId
+      })
+    ),
+  selectedTaskListId: null,
+  setSelectedTaskListId: (listId) =>
+    set(
+      produce((state) => {
+        state.selectedTaskListId = listId
+      })
+    ),
 }));

@@ -69,8 +69,8 @@ export class taskService {
     return response;
   }
 
-  static async getTasks(token) {
-    const response = await axios.get(`${server}/api/tasks`, {
+  static async getTasks(token, query) {
+    const response = await axios.get(`${server}/api/tasks${query ? '?'+query : '' }`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
