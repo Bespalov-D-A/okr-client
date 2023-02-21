@@ -12,8 +12,8 @@ import s from "./index.module.scss";
 
 const TaskList = ({ TaskItem }) => {
 	const taskList = useTaskList((state) => state.list);
-	const selectedTaskListId = useTaskList((state) => state.selectedTaskListId);
-	const selectedTaskTypeId = useTaskList((state) => state.selectedTaskTypeId);
+	const selectedTaskList = useTaskList((state) => state.selectedTaskList);
+	const selectedTaskType = useTaskList((state) => state.selectedTaskType);
 	const setTaskList = useTaskList((state) => state.setList);
 	const setAlert = useAlert((state) => state.setAlert);
 	const taskSwitcher = useTaskList((state) => state.taskSwitcher);
@@ -30,32 +30,38 @@ const TaskList = ({ TaskItem }) => {
 	);
 
 	useEffect(() => {
-		const taskListFilter = selectedTaskListId
-			? selectedTaskListId 
-			: undefined;
-		const taskTypeFilter = selectedTaskTypeId
-			?  selectedTaskTypeId
-			: undefined;
+		const taskListFilter = selectedTaskList ? selectedTaskList.id : undefined;
+		const taskTypeFilter = selectedTaskType ? selectedTaskType.id : undefined;
 
 		const filters = {
 			...(taskListFilter && { task_list: taskListFilter }),
 			...(taskTypeFilter && { task_type: taskTypeFilter }),
 		};
 
-		console.log(filters)
+		console.log(filters);
 		const filtersString = qs.stringify({ filters });
-    query = filtersString.length ? filtersString : null;
+		query = filtersString.length ? filtersString : null;
 		isFetch();
-	}, [taskSwitcher, selectedTaskListId, selectedTaskTypeId]);
+	}, [taskSwitcher, selectedTaskList, selectedTaskType]);
 
 	return (
 		<Container className={s.list} maxWidth="xl">
 			{Boolean(taskList?.length) ? (
-				taskList.map(TaskItem)
+				<div>
+					<Typography className={s["list-title"]} component="h5" variant="h5">
+						Выбран лист: {selectedTaskList?.title}
+					</Typography>
+					{taskList.map(TaskItem)}
+				</div>
 			) : (
-				<Typography className={s.title} component="h3" variant="h3">
-					Задач нет
-				</Typography>
+				<div>
+					<Typography className={s["list-title"]} component="h5" variant="h5">
+						Выбран лист: {selectedTaskList?.title}
+					</Typography>
+					<Typography className={s.title} component="h3" variant="h3">
+						Задач нет
+					</Typography>
+				</div>
 			)}
 		</Container>
 	);

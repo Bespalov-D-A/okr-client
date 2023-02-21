@@ -4,7 +4,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useEffect, useState } from "react";
 import { reactLocalStorage } from "reactjs-localstorage";
-import { useAlert } from "../../../6-Entities/common";
+import { useAlert, useCommon } from "../../../6-Entities/common";
+import { useTaskList } from "../../../6-Entities/taskList";
 import { taskService } from "../../../7-Shared/API/taskService";
 import { FAILED_GET_TASK_LISTS } from "../../../7-Shared/assests/Constants";
 import { useLoader } from "../../../7-Shared/hooks/useLoad";
@@ -13,6 +14,10 @@ import s from "./index.module.scss";
 
 const TasklistsList = () => {
 	const setAlert = useAlert((state) => state.setAlert);
+	const setSelectedTaskList = useTaskList(
+		(state) => state.setSelectedTaskList
+	);
+  const setIsOpenMenu = useCommon((state) => state.setIsOpenMenu);
 	const [list, setLists] = useState(null);
 
 	const [isFetch, isLoad, error] = useLoader(
@@ -36,11 +41,21 @@ const TasklistsList = () => {
 		isFetch();
 	}, []);
 
+	function handleClick(listItem) {
+		setIsOpenMenu(false)
+		setSelectedTaskList({id: listItem.id, title: listItem.attributes.title});
+	}
+
 	function mapList() {
 		let mapList;
 		if (list) {
 			mapList = list.data?.map((item) => (
-				<ListItem className={s.item} key={item.id} disablePadding>
+				<ListItem
+					onClick={() => handleClick(item)}
+					className={s.item}
+					key={item.id}
+					disablePadding
+				>
 					<ListItemButton>
 						<ListItemText primary={item.attributes.title} />
 					</ListItemButton>
@@ -52,12 +67,10 @@ const TasklistsList = () => {
 
 	return (
 		<div className={s.wrap}>
-			<p className={s.lists}>Листы задач</p>
+			<p className={s.title}>Листы задач</p>
 			{list && (
-				<List style={{height: '100%'}}>
-					<CustomScrollBar>
-						{mapList()}
-					</CustomScrollBar>
+				<List className={s.lists}>
+					<CustomScrollBar>{mapList()}</CustomScrollBar>
 				</List>
 			)}
 		</div>
