@@ -29,7 +29,7 @@ const ConsentDeleteTaskModalContent = () => {
       setTaskSwitcher();
       console.log(response.data);
       setAlert("success", SUCCESS_TASK_DELETE);
-    setOpen(false);
+      setOpen(false);
     }
   );
 

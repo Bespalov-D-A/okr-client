@@ -1,3 +1,4 @@
+import Typography from "@mui/material/Typography";
 import Container from "@mui/system/Container";
 import { useEffect } from "react";
 import { reactLocalStorage } from "reactjs-localstorage";
@@ -29,7 +30,9 @@ const TaskList = ({TaskItem}) => {
 
 	return (
 		<Container className={s.list} maxWidth="xl">
-			{taskList && taskList.map(TaskItem)}
+			{!!taskList.length ? taskList.map(TaskItem) : 
+			<Typography className={s.title} component='h3' variant='h3'>Задач нет</Typography>
+			}
 		</Container>
 	);
 };

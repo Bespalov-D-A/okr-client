@@ -1,4 +1,5 @@
 import IconButton from "@mui/material/IconButton";
+import ReplyAllIcon from "@mui/icons-material/ReplyAll";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Tooltip from "@mui/material/Tooltip";
 import { useAlert } from "../../../6-Entities/common";
@@ -13,7 +14,9 @@ import { useTaskList } from "../../../6-Entities/taskList";
 
 const TaskCompleteBtn = ({ completed, taskId }) => {
 	const setAlert = useAlert((state) => state.setAlert);
+	const getTaskById = useTaskList((state) => state.getTaskById);
 	const setTaskSwitcher = useTaskList((state) => state.setTaskSwitcher);
+	const task = getTaskById(taskId);
 
 	const [isFetch, isLoad, error] = useLoader(
 		FAILED_EDIT_TASK,
@@ -21,7 +24,7 @@ const TaskCompleteBtn = ({ completed, taskId }) => {
 		async (params) => {
 			const token = reactLocalStorage.get("jwt");
 			const response = await taskService.updateTask(token, taskId, {
-				completed: true,
+				completed: !task.attributes.completed,
 			});
 			setTaskSwitcher();
 			console.log(response.data);
@@ -34,9 +37,15 @@ const TaskCompleteBtn = ({ completed, taskId }) => {
 	};
 
 	return (
-		<Tooltip title="Завершить задачу">
+		<Tooltip
+			title={
+				task.attributes.completed
+					? "Вернуть в 'не завершено'"
+					: "Завершить задачу"
+			}
+		>
 			<IconButton onClick={handleClick} aria-label="Завершить задачу">
-				<CheckCircleIcon color={completed ? 'success' : 'inherit'} />
+				{task.attributes.completed ? <ReplyAllIcon /> : <CheckCircleIcon />}
 			</IconButton>
 		</Tooltip>
 	);
