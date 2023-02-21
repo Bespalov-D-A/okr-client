@@ -1,0 +1,11 @@
+.content {
+}
+
+.btn-wrap {
+	width: 100%;
+	text-align: right;
+	margin-bottom: 24px;
+	& > *:first-child {
+		margin-right: 12px;
+	}
+}

@@ -10,9 +10,7 @@ import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import Tooltip from "@mui/material/Tooltip";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
+import Typography from "@mui/material/Typography";
 
 const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
@@ -53,7 +51,12 @@ const TaskItem = ({
 		<Card className={s.card} sx={{ maxWidth: 600 }}>
 			<Tooltip title="Статус задачи">
 				<div className={s.bar}>
-					Статус: {completed ? "Выполнено" : "Ожидает выполнения"}
+					Статус:{" "}
+					{completed ? (
+						<span className={s.success}>Выполнено</span>
+					) : (
+						"Ожидает выполнения"
+					)}
 				</div>
 			</Tooltip>
 			<CardHeader
@@ -73,7 +76,7 @@ const TaskItem = ({
 			/>
 			<CardActions disableSpacing>
 				{TaskItemMenu(id, open, handleClose, anchorEl)}
-				{SetCompleteBtn(id)}
+				{SetCompleteBtn( completed, id)}
 				{EditTaskBtn(id)}
 				{description.length > 0 && (
 					<ExpandMore

@@ -11,7 +11,7 @@ import { reactLocalStorage } from "reactjs-localstorage";
 import { taskService } from "../../../7-Shared/API/taskService";
 import { useTaskList } from "../../../6-Entities/taskList";
 
-const TaskCompleteBtn = ({ taskId }) => {
+const TaskCompleteBtn = ({ completed, taskId }) => {
 	const setAlert = useAlert((state) => state.setAlert);
 	const setTaskSwitcher = useTaskList((state) => state.setTaskSwitcher);
 
@@ -36,7 +36,7 @@ const TaskCompleteBtn = ({ taskId }) => {
 	return (
 		<Tooltip title="Завершить задачу">
 			<IconButton onClick={handleClick} aria-label="Завершить задачу">
-				<CheckCircleIcon />
+				<CheckCircleIcon color={completed ? 'success' : 'inherit'} />
 			</IconButton>
 		</Tooltip>
 	);

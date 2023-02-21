@@ -6,6 +6,14 @@ export const useGreetingModal = create((set) => ({
 	setOpen: (open) => set(produce(state=> {state.open = open})),
 }))
 
+export const useDeleteTaskModal = create((set) => ({
+  open: false,
+  task: null,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+	setTask: (task) => set(produce(state=> {state.task = task})),
+}))
+
+
 export const useAddTaskModal = create((set) => ({
   open: false,
 	setOpen: (open) => set(produce(state=> {state.open = open})),

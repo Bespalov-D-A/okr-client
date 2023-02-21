@@ -10,7 +10,7 @@ const DialActions = ({ parent }) => {
 			icon: <PlaylistAddIcon />,
 			name: "Новый лист задач",
 			action: () => {
-				alert("задача");
+
 			},
 		},
 		{

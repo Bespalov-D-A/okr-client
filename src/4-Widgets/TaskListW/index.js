@@ -17,7 +17,9 @@ const TaskListW = () => {
 						date={task.attributes.date}
 						title={task.attributes.title}
 						description={task.attributes.description}
-						SetCompleteBtn={(id) => <TaskCompleteBtn taskId={id} />}
+						SetCompleteBtn={(completed, id) => (
+							<TaskCompleteBtn completed={completed} taskId={id} />
+						)}
 						EditTaskBtn={(id) => <TaskEditBtn taskId={id} />}
 						TaskItemMenu={(id, open, handleClose, anchorEl) => (
 							<TaskItemMenu
