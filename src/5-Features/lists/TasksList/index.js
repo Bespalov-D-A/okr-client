@@ -9,11 +9,11 @@ import { FAILED_GET_TASKS } from "../../../7-Shared/assests/Constants";
 import { useLoader } from "../../../7-Shared/hooks/useLoad";
 import s from "./index.module.scss";
 
-const TaskList = ({TaskItem}) => {
+const TaskList = ({ TaskItem }) => {
 	const taskList = useTaskList((state) => state.list);
 	const setTaskList = useTaskList((state) => state.setList);
 	const setAlert = useAlert((state) => state.setAlert);
-	const taskSwitcher = useTaskList(state => state.taskSwitcher)
+	const taskSwitcher = useTaskList((state) => state.taskSwitcher);
 
 	const [isFetch, isLoad, error] = useLoader(
 		FAILED_GET_TASKS,
@@ -30,9 +30,13 @@ const TaskList = ({TaskItem}) => {
 
 	return (
 		<Container className={s.list} maxWidth="xl">
-			{!!taskList.length ? taskList.map(TaskItem) : 
-			<Typography className={s.title} component='h3' variant='h3'>Задач нет</Typography>
-			}
+			{Boolean(taskList?.length) ? (
+				taskList.map(TaskItem)
+			) : (
+				<Typography className={s.title} component="h3" variant="h3">
+					Задач нет
+				</Typography>
+			)}
 		</Container>
 	);
 };

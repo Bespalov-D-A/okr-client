@@ -1,5 +1,5 @@
 import axios from "axios";
-import {randomString} from "../lib/RandomPassword";
+import { randomString } from "../lib/RandomPassword";
 
 const server = process.env.REACT_APP_SERVER;
 
@@ -16,7 +16,7 @@ export class userService {
   static async authUser(data) {
     const response = await axios.post(`${server}/api/auth/local`, {
       identifier: data.authLogin,
-      password: data.authPassword
+      password: data.authPassword,
     });
     return response;
   }
@@ -41,15 +41,29 @@ export class userService {
     return response;
   }
 
-static async googleOAuth() {
-    const response = await axios.get(`https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&response_type=code&client_id=433653952389-47n1u565e8ecv4u8h5k4bff1erpbm2du.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fgoogle%2Fcallback`);
+  static async googleOAuth() {
+    const response = await axios.get(
+      `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&response_type=code&client_id=433653952389-47n1u565e8ecv4u8h5k4bff1erpbm2du.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fgoogle%2Fcallback`
+    );
     return response;
   }
 
-
   static async getUserDataWithGoogleAuth(code) {
-    const response = await axios.post(`http://localhost:1337/strapi-google-auth/user-profile`,{
-      code
+    const response = await axios.post(
+      `http://localhost:1337/strapi-google-auth/user-profile`,
+      {
+        code,
+      }
+    );
+    return response;
+  }
+
+  static async getUserProfile(token) {
+    const response = await axios.get(`${server}/api/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
     });
     return response;
   }

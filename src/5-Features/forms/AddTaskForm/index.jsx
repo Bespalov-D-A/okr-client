@@ -55,8 +55,8 @@ const AddTaskForm = ({
 			selectedTaskType: null,
 			taskTitle: "",
 			taskDescription: "",
-			time: new Date(),
-			date: new Date(),
+			time: null,
+			date: null,
 		},
 		validationSchema: addTaskValidationSchema,
 		onSubmit: (values) => {

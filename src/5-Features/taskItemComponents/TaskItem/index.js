@@ -48,7 +48,7 @@ const TaskItem = ({
 	};
 
 	return (
-		<Card className={s.card} sx={{ maxWidth: 600 }}>
+		<Card className={s.card}>
 			<Tooltip title="Статус задачи">
 				<div className={s.bar}>
 					Статус:{" "}
@@ -61,7 +61,9 @@ const TaskItem = ({
 			</Tooltip>
 			<CardHeader
 				title={title}
-				subheader={`назначено на:  ${date}  ${time}`}
+				subheader={`${date || time ? "назначено на:" : "Без времени"}  ${
+					date ? date : ""
+				}  ${time ? time : ""}`}
 				action={
 					<IconButton
 						aria-label="settings"
@@ -76,7 +78,7 @@ const TaskItem = ({
 			/>
 			<CardActions disableSpacing>
 				{TaskItemMenu(id, open, handleClose, anchorEl)}
-				{SetCompleteBtn( completed, id)}
+				{SetCompleteBtn(completed, id)}
 				{EditTaskBtn(id)}
 				{description.length > 0 && (
 					<ExpandMore
@@ -85,7 +87,9 @@ const TaskItem = ({
 						aria-expanded={expanded}
 						aria-label="show more"
 					>
-						<ExpandMoreIcon />
+						<Tooltip title="Описание задачи">
+							<ExpandMoreIcon />
+						</Tooltip>
 					</ExpandMore>
 				)}
 			</CardActions>

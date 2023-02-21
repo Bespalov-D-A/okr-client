@@ -6,6 +6,7 @@ import AddTaskModalW from "../../4-Widgets/AddTaskModalW";
 import BarW from "../../4-Widgets/BarW";
 import ConsentDeleteTaskModalW from "../../4-Widgets/ConsentDeleteTaskModalW";
 import DialW from "../../4-Widgets/DialW";
+import MenuW from "../../4-Widgets/MenuW";
 import TaskListW from "../../4-Widgets/TaskListW";
 import Alert from "../../5-Features/ui/Alert";
 import s from "./index.module.scss";
@@ -22,6 +23,7 @@ const Main = () => {
 	return (
 		<div className={s.wrap}>
 			<Alert />
+			<MenuW />
 			<ConsentDeleteTaskModalW />
 			<BarW />
 			<Container className={s.content} maxWidth="xl">

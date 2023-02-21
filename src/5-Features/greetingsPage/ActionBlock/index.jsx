@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
-import { theme } from "../../../1-App/mui/WithTheme";
 import { useGreetingModal, useLoginModal } from "../../../6-Entities/modals";
+import {theme} from "../../../7-Shared/assests/mui/WithTheme";
 import s from "./index.module.scss";
 
 const ActionBlock = () => {

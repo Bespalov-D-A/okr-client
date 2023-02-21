@@ -1,0 +1,25 @@
+.menu {
+	position: relative;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: space-between;
+	width: 420px;
+	height: 100%;
+	max-width: 420px;
+	min-width: 420px;
+	padding-bottom: 82px;
+}
+
+.wrap {
+	position: relative;
+	width: 420px;
+	flex-grow: 1;
+	height: 100%;
+}
+
+.exit {
+	position: absolute;
+	bottom: 24px;
+	left: 12px;
+	right: 12px;
+}

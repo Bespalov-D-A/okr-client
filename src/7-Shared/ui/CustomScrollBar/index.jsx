@@ -1,5 +1,5 @@
-import { theme } from "../../../1-App/mui/WithTheme";
 import { Scrollbars } from "react-custom-scrollbars";
+import {theme} from "../../assests/mui/WithTheme";
 
 //Кастомный скролбар, для компонентов с прокруткой
 //Подстраивается под размер родителя
