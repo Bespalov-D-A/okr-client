@@ -93,4 +93,17 @@ export class taskService {
     );
     return response;
   }
+
+  static async deleteTask(token, taskId) {
+    const response = await axios.delete(
+      `${server}/api/tasks/${taskId}`,
+        {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  }
 }
