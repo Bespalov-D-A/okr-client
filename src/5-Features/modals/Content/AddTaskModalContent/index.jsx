@@ -4,11 +4,9 @@ import s from "./index.module.scss";
 const AddTaskModalContent = ({ addTaskForm, captchaFunc, children }) => {
 	return (
 		<div id="login-modal-content" className={s.content}>
-			<CustomScrollBar>
 				<div className={s["form-wrap"]}>
 					{addTaskForm(captchaFunc, children)}
 				</div>
-			</CustomScrollBar>
 		</div>
 	);
 };

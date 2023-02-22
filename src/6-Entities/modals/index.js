@@ -6,6 +6,22 @@ export const useGreetingModal = create((set) => ({
 	setOpen: (open) => set(produce(state=> {state.open = open})),
 }))
 
+export const useAddTaskListItemModal = create((set) => ({
+  open: false,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+  BtnDisabled: true,
+	setBtnDisabled: (bool) => set(produce(state=> {state.BtnDisabled = bool})),
+}))
+
+
+export const useAddTaskTypeItemModal = create((set) => ({
+  open: false,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+  BtnDisabled: true,
+	setBtnDisabled: (bool) => set(produce(state=> {state.BtnDisabled = bool})),
+}))
+
+
 export const useDeleteTaskModal = create((set) => ({
   open: false,
   task: null,
