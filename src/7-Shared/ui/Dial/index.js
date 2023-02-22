@@ -21,7 +21,7 @@ const Dial = ({ children }) => {
     <>
       <Backdrop onClick={handleClose} open={open} />
 
-      <Container maxWidth="xl">
+      <Container style={{padding: 0}} maxWidth="xl">
         <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}>
           <SpeedDial
             ariaLabel="SpeedDial basic example"

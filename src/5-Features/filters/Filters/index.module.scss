@@ -1,4 +1,11 @@
 .filters {
 	display: flex;
 	justify-content: space-between;
+
+	@media screen and (max-width: 728px) {
+		flex-flow: column wrap;
+		& > *:first-child {
+			margin-bottom: 2px;
+		}
+	}
 }

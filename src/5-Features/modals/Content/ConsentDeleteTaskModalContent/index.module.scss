@@ -1,4 +1,16 @@
 .content {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: flex-end;
+
+	@media screen and (max-width: 728px) {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 24px;
+		top: 0;
+	}
 }
 
 .btn-wrap {

@@ -1,4 +1,9 @@
 .list {
+padding-bottom: 64px;
+	@media screen and (max-width: 728px) {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
 }
 
 .title {

@@ -17,7 +17,7 @@ const ExpandMore = styled((props) => {
 	return <IconButton {...other} />;
 })(({ theme, expand }) => ({
 	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-	marginRight: "auto",
+	marginLeft: "auto",
 	transition: theme.transitions.create("transform", {
 		duration: theme.transitions.duration.shortest,
 	}),
@@ -78,6 +78,7 @@ const TaskItem = ({
 			/>
 			<CardActions disableSpacing>
 				{TaskItemMenu(id, open, handleClose, anchorEl)}
+				{SetCompleteBtn(completed, id)}
 				{description.length > 0 && (
 					<ExpandMore
 						expand={expanded}
@@ -92,7 +93,6 @@ const TaskItem = ({
 				)}
 				{//EditTaskBtn(id)}
 					}
-				{SetCompleteBtn(completed, id)}
 
 			</CardActions>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>

@@ -1,7 +1,13 @@
 .wrap {
 	padding-top: 24px;
+	@media screen and (max-width: 600px) {
+		& > * {
+			width: 100%;
+			margin-bottom: 12px;
+		}
+	}
 }
 
 .title {
-	margin-bottom: 12px; 
+	margin-bottom: 12px;
 }
