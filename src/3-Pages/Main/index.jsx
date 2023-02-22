@@ -2,7 +2,9 @@ import Container from "@mui/system/Container";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { reactLocalStorage } from "reactjs-localstorage";
+import AddTaskListItemModalW from "../../4-Widgets/AddTaskListItemModalW";
 import AddTaskModalW from "../../4-Widgets/AddTaskModalW";
+import AddTaskTypeItemModalW from "../../4-Widgets/AddTaskTypeItemModalW";
 import BarW from "../../4-Widgets/BarW";
 import ConsentDeleteTaskModalW from "../../4-Widgets/ConsentDeleteTaskModalW";
 import DialW from "../../4-Widgets/DialW";
@@ -26,6 +28,8 @@ const Main = () => {
 			<Alert />
 			<MenuW />
 			<ConsentDeleteTaskModalW />
+			<AddTaskListItemModalW />
+			<AddTaskTypeItemModalW />
 			<BarW />
 			<Container className={s.content} maxWidth="xl">
 				<TaskListW>

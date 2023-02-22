@@ -32,6 +32,7 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 		},
 		validationSchema: createTaskListValidationSchema,
 		onSubmit: (values) => {
+			console.log('sdfsdfsdfsdfsdfsdfs')
 			const token = reactLocalStorage.get("jwt");
 			const newValues = {
 				...values,
