@@ -4,10 +4,11 @@ import TaskEditBtn from "../../5-Features/taskItemComponents/TaskEditBtn";
 import TaskItem from "../../5-Features/taskItemComponents/TaskItem";
 import TaskItemMenu from "../../5-Features/taskItemComponents/TaskItemMenu";
 
-const TaskListW = () => {
+const TaskListW = ({children}) => {
 	return (
 		<div>
 			<TaskList
+				Filters={()=> children}
 				TaskItem={(task) => (
 					<TaskItem
 						key={task.id}

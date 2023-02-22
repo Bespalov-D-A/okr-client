@@ -67,7 +67,7 @@ const TasklistsList = () => {
 
 	return (
 		<div className={s.wrap}>
-			<p className={s.title}>Листы задач</p>
+			<p className={s.title}>Ваши листы задач</p>
 			{list && (
 				<List className={s.lists}>
 					<CustomScrollBar>{mapList()}</CustomScrollBar>

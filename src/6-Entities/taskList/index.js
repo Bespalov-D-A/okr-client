@@ -9,7 +9,7 @@ export const useTaskList = create((set, get) => ({
         state.list = list;
       })
     ),
-   getTaskById: (id) => {
+  getTaskById: (id) => {
     return get().list.find((item) => item.id === id);
   },
   taskSwitcher: false,
@@ -23,14 +23,21 @@ export const useTaskList = create((set, get) => ({
   setSelectedTaskType: (type) =>
     set(
       produce((state) => {
-        state.selectedTaskType = type
+        state.selectedTaskType = type;
       })
     ),
   selectedTaskList: null,
   setSelectedTaskList: (list) =>
     set(
       produce((state) => {
-        state.selectedTaskList = list
+        state.selectedTaskList = list;
+      })
+    ),
+  selectedTaskCompleted: null,
+  setSelectedTaskCompleted: (list) =>
+    set(
+      produce((state) => {
+        state.selectedTaskCompleted = list;
       })
     ),
 }));

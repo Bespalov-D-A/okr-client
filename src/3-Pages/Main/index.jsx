@@ -6,6 +6,7 @@ import AddTaskModalW from "../../4-Widgets/AddTaskModalW";
 import BarW from "../../4-Widgets/BarW";
 import ConsentDeleteTaskModalW from "../../4-Widgets/ConsentDeleteTaskModalW";
 import DialW from "../../4-Widgets/DialW";
+import FiltersW from "../../4-Widgets/FiltersW";
 import MenuW from "../../4-Widgets/MenuW";
 import TaskListW from "../../4-Widgets/TaskListW";
 import Alert from "../../5-Features/ui/Alert";
@@ -27,8 +28,9 @@ const Main = () => {
 			<ConsentDeleteTaskModalW />
 			<BarW />
 			<Container className={s.content} maxWidth="xl">
-				main
-				<TaskListW/>
+				<TaskListW>
+				<FiltersW />
+				</TaskListW>
 			</Container>
 			<AddTaskModalW />
 			<DialW />
