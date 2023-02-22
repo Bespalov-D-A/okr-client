@@ -16,7 +16,7 @@ const CreateTaskTaskForm = ({ formik, DateTime }) => {
 	const [taskTime, setTaskTime] = useState(new Date());
 
 	useEffect(() => {
-		if (taskDate && taskTime) {
+		if (taskDate && taskTime && addTime) {
 			const formTime = date.format(new Date(taskTime), "HH:mm");
 			const formDate = date.format(new Date(taskDate), "DD.MM.YY");
 			formik.setFieldValue("time", String(formTime));

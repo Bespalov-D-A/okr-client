@@ -6,6 +6,10 @@ export const maxFunc = (num) => `Ограничение символов: ${num}
 
 export const FAILED_AUTHENTICATION = 'Ошика аутентификации'
 export const FAILED_GET_TASK_LISTS = 'Ошибка загрузки листов задач'
+export const FAILED_GET_TASKS = 'Ошибка загрузки задач'
+export const FAILED_GET_USER_PROFILE = 'Ошибка загрузки профиля пользователя'
+export const FAILED_EDIT_TASK = 'Ошибка. Не удалось изменить статус задачи'
+export const FAILED_DELETE_TASK = 'Ошибка. Не удалось удалить задачу'
 export const FAILED_GET_TASK_TYPES = 'Ошибка загрузки типов задач'
 export const FAILED_CREATE_TASK_LIST = 'Ошибка создания листа задач'
 export const FAILED_CREATE_TASK_TYPE = 'Ошибка создания типа задач'
@@ -15,6 +19,8 @@ export const FAILED_SEND_RECOVERY_PASS_LINK = 'Не удалось отправ�
 export const SUCCESS_SENT_RECOVERY_PASS_LINK = 'На указанную почту отправлена ссылка для сброса пароля'
 export const SUCCESS_ACCOUNT_CREATE = 'Ура! Аккаунт создан. Хорошего дня :)'
 export const SUCCESS_TASK_CREATE = 'Задача добавлена'
+export const SUCCESS_TASK_DELETE = 'Задача удалена'
+export const SUCCESS_TASK_STATUS_EDIT = 'Статус задачи успешно обновлен'
 export const FAILED_TO_CREATE_ACCOUNT = "Не удалось создать аккаунт"
 export const FAILED_TO_GET_DATA_GOOGLE_ACCOUNT = "не удалось получить данные гугл аккаунта"
 export const FAILED_TO_GOOGLE_AUTH = "Ошибка авторизации гугл аккаунта"

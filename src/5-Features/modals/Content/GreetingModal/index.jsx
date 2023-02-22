@@ -10,7 +10,7 @@ const GreetingModalContent = () => {
   const setOpen = useGreetingModal((state) => state.setOpen);
 
   return (
-    <div id='greeting-modal-content'>
+    <div className={s.greeting} id='greeting-modal-content'>
       <div className={s.description}>
         <CustomScrollBar>
           <div>{lor}</div>

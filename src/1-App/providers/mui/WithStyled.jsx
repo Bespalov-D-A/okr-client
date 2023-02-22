@@ -1,5 +1,5 @@
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
-import { theme } from "../../mui/WithTheme";
+import {theme} from "../../../7-Shared/assests/mui/WithTheme";
 
 //импортируем кастомизированную тему, оборачиваем ей приложение
 //Оборачиваем приложение StyledEngine что бы css был выше mui cssInJs

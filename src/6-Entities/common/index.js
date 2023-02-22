@@ -2,6 +2,7 @@ import { create } from "zustand";
 import produce from "immer";
 
 export const useCommon = create((set) => ({
+  isOpenMenu: false,
   formBtnDisabled: true,
   setFormBtnDisabled: (bool) =>
     set(
@@ -9,6 +10,13 @@ export const useCommon = create((set) => ({
         state.formBtnDisabled = bool;
       })
     ),
+  setIsOpenMenu: (bool) =>
+    set(
+      produce((state) => {
+        state.isOpenMenu = bool;
+      })
+    ),
+
 }));
 
 export const useAlert = create((set) => ({
@@ -33,4 +41,5 @@ export const useAlert = create((set) => ({
         state.message = obj.msg;
       })
     ),
+
 }));

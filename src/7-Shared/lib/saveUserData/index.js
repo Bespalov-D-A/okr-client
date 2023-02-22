@@ -7,6 +7,7 @@ import {
 //Утилита для сохранения данных только что
 //авторизованного или зарегистрированного юзера
 export const saveUserData = (serverResponse, setAlert) => {
+	console.log(serverResponse)
 	try {
 		const key = serverResponse.token
 			? serverResponse.token

@@ -5,7 +5,8 @@ import "@fontsource/roboto/700.css";
 import "@fontsource/caveat/400.css";
 import "@fontsource/caveat/700.css";
 import "@fontsource/raleway/400.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import {useEffect} from "react";
 
 //Входная точка приложения
 const App = () => {
