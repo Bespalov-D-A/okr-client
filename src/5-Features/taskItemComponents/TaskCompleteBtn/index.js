@@ -1,6 +1,3 @@
-import IconButton from "@mui/material/IconButton";
-import ReplyAllIcon from "@mui/icons-material/ReplyAll";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Tooltip from "@mui/material/Tooltip";
 import { useAlert } from "../../../6-Entities/common";
 import { useLoader } from "../../../7-Shared/hooks/useLoad";
@@ -11,12 +8,16 @@ import {
 import { reactLocalStorage } from "reactjs-localstorage";
 import { taskService } from "../../../7-Shared/API/taskService";
 import { useTaskList } from "../../../6-Entities/taskList";
+import Checkbox from "@mui/material/Checkbox";
+import { useEffect, useState } from "react";
 
 const TaskCompleteBtn = ({ completed, taskId }) => {
+	const [checked, setChecked] = useState(false);
 	const setAlert = useAlert((state) => state.setAlert);
 	const getTaskById = useTaskList((state) => state.getTaskById);
 	const setTaskSwitcher = useTaskList((state) => state.setTaskSwitcher);
 	const task = getTaskById(taskId);
+	let timer;
 
 	const [isFetch, isLoad, error] = useLoader(
 		FAILED_EDIT_TASK,
@@ -32,9 +33,15 @@ const TaskCompleteBtn = ({ completed, taskId }) => {
 			setAlert("success", SUCCESS_TASK_STATUS_EDIT);
 		}
 	);
-	const handleClick = () => {
-		isFetch();
+	const handleChange = () => {
+		setChecked(!task.attributes.completed);
+		timer = setTimeout(() => isFetch(), 500);
 	};
+
+	useEffect(() => {
+		setChecked(task.attributes.completed);
+		return () => clearTimeout(timer);
+	}, []);
 
 	return (
 		<Tooltip
@@ -44,9 +51,12 @@ const TaskCompleteBtn = ({ completed, taskId }) => {
 					: "Завершить задачу"
 			}
 		>
-			<IconButton onClick={handleClick} aria-label="Завершить задачу">
-				{task.attributes.completed ? <ReplyAllIcon /> : <CheckCircleIcon />}
-			</IconButton>
+			<Checkbox
+				checked={checked}
+				onChange={handleChange}
+				inputProps={{ "aria-label": "controlled" }}
+				sx={{ "& .MuiSvgIcon-root": { fontSize: 36 } }}
+			/>
 		</Tooltip>
 	);
 };

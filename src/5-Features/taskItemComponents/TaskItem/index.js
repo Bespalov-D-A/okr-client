@@ -17,7 +17,7 @@ const ExpandMore = styled((props) => {
 	return <IconButton {...other} />;
 })(({ theme, expand }) => ({
 	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-	marginLeft: "auto",
+	marginRight: "auto",
 	transition: theme.transitions.create("transform", {
 		duration: theme.transitions.duration.shortest,
 	}),
@@ -61,7 +61,7 @@ const TaskItem = ({
 			</Tooltip>
 			<CardHeader
 				title={title}
-				subheader={`${date || time ? "назначено на:" : "Без времени"}  ${
+				subheader={`${date || time ? "На" : "Без времени"}  ${
 					date ? date : ""
 				}  ${time ? time : ""}`}
 				action={
@@ -78,8 +78,6 @@ const TaskItem = ({
 			/>
 			<CardActions disableSpacing>
 				{TaskItemMenu(id, open, handleClose, anchorEl)}
-				{SetCompleteBtn(completed, id)}
-				{EditTaskBtn(id)}
 				{description.length > 0 && (
 					<ExpandMore
 						expand={expanded}
@@ -92,6 +90,10 @@ const TaskItem = ({
 						</Tooltip>
 					</ExpandMore>
 				)}
+				{//EditTaskBtn(id)}
+					}
+				{SetCompleteBtn(completed, id)}
+
 			</CardActions>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
