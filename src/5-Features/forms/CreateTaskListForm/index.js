@@ -20,8 +20,8 @@ import {
 
 const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 	const [addTime, setAddTime] = useState(false);
-	const [listDate, setListDate] = useState(new Date());
-	const [listTime, setListTime] = useState(new Date());
+	const [listDate, setListDate] = useState(null);
+	const [listTime, setListTime] = useState(null);
 	const setAlert = useAlert((state) => state.setAlert);
 
 	const formik = useFormik({
@@ -32,12 +32,11 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 		},
 		validationSchema: createTaskListValidationSchema,
 		onSubmit: (values) => {
-			console.log('sdfsdfsdfsdfsdfsdfs')
 			const token = reactLocalStorage.get("jwt");
 			const newValues = {
 				...values,
-				date: date.format(new Date(listDate), "DD.MM.YYYY"),
-				time: date.format(new Date(listTime), "HH:mm"),
+				date: listDate ? date.format(new Date(listDate), "DD.MM.YYYY") : null,
+				time: listTime ? date.format(new Date(listTime), "HH:mm") : null
 			};
 			taskService
 				.createTaskList(token, newValues)
@@ -50,6 +49,17 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 				});
 		},
 	});
+
+	const handleTime = () => {
+		if (!addTime) {
+			setListDate(new Date());
+			setListTime(new Date());
+		} else {
+			setListDate(null);
+			setListTime(null);
+		}
+		setAddTime(!addTime);
+	};
 
 	const title = TITLE_FROM_DATETIME_LIST;
 
@@ -83,7 +93,7 @@ const CreateTaskListForm = ({ DateTime, closeCreateForm }) => {
 						color="primary"
 						aria-label="upload picture"
 						component="label"
-						onClick={() => setAddTime(!addTime)}
+						onClick={handleTime}
 					>
 						{addTime ? <AlarmOffIcon color="error" /> : <MoreTimeIcon />}
 					</IconButton>
