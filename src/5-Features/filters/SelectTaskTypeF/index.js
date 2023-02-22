@@ -28,11 +28,9 @@ const promiseOptions = (e, setAlert) => {
 		});
 };
 
-const SelectTaskTypeF = () => {
+const SelectTaskTypeF = ({selectedTaskType, setSelectedTaskType}) => {
 	const open = useAddTaskTypeItemModal((state) => state.open);
 	const setAlert = useAlert((state) => state.setAlert);
-	const selectedTaskType = useTaskList((state) => state.selectTaskType);
-	const setSelectedTaskType = useTaskList((state) => state.setSelectedTaskType);
 
 	const handleChange = (e) => {
 		setSelectedTaskType(e);

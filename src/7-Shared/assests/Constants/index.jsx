@@ -20,6 +20,7 @@ export const SUCCESS_SENT_RECOVERY_PASS_LINK = 'На указанную почт
 export const SUCCESS_ACCOUNT_CREATE = 'Ура! Аккаунт создан. Хорошего дня :)'
 export const SUCCESS_TASK_CREATE = 'Задача добавлена'
 export const SUCCESS_TASK_DELETE = 'Задача удалена'
+export const SUCCESS_TASK_UPDATE = 'Задача обновлена'
 export const SUCCESS_TASK_STATUS_EDIT = 'Статус задачи успешно обновлен'
 export const FAILED_TO_CREATE_ACCOUNT = "Не удалось создать аккаунт"
 export const FAILED_TO_GET_DATA_GOOGLE_ACCOUNT = "не удалось получить данные гугл аккаунта"

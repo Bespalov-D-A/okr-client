@@ -20,3 +20,9 @@
 	font-weight: bold;
 	color: var(--color-success-dark);
 }
+
+.list-type {
+	display: flex;
+	justify-content: flex-start;
+	padding: 0 24px;
+}

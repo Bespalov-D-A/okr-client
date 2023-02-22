@@ -21,6 +21,8 @@ const TaskListW = ({ children }) => {
 						time={task.attributes.time}
 						date={task.attributes.date}
 						title={task.attributes.title}
+						taskType={task.attributes.task_type && task.attributes.task_type}
+						taskList={task.attributes.task_list && task.attributes.task_list}
 						description={task.attributes.description}
 						SetCompleteBtn={(completed, id) => (
 							<TaskCompleteBtn completed={completed} taskId={id} />

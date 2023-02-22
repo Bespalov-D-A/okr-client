@@ -60,7 +60,16 @@ const TaskList = ({ Filters, Pagination, TaskItem }) => {
 			pageSize,
 		};
 
-		const filtersString = qs.stringify({ filters, pagination });
+		const populate = {
+			task_list: {
+				fields: ['id', 'title']
+			},
+			task_type: {
+				fields: ['id', 'title']
+			}
+		}
+
+		const filtersString = qs.stringify({ populate, filters, pagination });
 		query = filtersString.length ? filtersString : null;
 		isFetch();
 	}, [
