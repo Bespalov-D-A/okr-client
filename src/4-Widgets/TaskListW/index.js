@@ -3,12 +3,16 @@ import TaskCompleteBtn from "../../5-Features/taskItemComponents/TaskCompleteBtn
 import TaskEditBtn from "../../5-Features/taskItemComponents/TaskEditBtn";
 import TaskItem from "../../5-Features/taskItemComponents/TaskItem";
 import TaskItemMenu from "../../5-Features/taskItemComponents/TaskItemMenu";
+import PaginationUI from "../../7-Shared/ui/PaginationUI";
 
-const TaskListW = ({children}) => {
+const TaskListW = ({ children }) => {
 	return (
 		<div>
 			<TaskList
-				Filters={()=> children}
+				Filters={() => children}
+				Pagination={(page, setPage, pageCount) => (
+					<PaginationUI page={page} setPage={setPage} pageCount={pageCount} />
+				)}
 				TaskItem={(task) => (
 					<TaskItem
 						key={task.id}
