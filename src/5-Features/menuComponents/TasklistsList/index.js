@@ -14,10 +14,8 @@ import s from "./index.module.scss";
 
 const TasklistsList = () => {
 	const setAlert = useAlert((state) => state.setAlert);
-	const setSelectedTaskList = useTaskList(
-		(state) => state.setSelectedTaskList
-	);
-  const setIsOpenMenu = useCommon((state) => state.setIsOpenMenu);
+	const setSelectedTaskList = useTaskList((state) => state.setSelectedTaskList);
+	const setIsOpenMenu = useCommon((state) => state.setIsOpenMenu);
 	const [list, setLists] = useState(null);
 
 	const [isFetch, isLoad, error] = useLoader(
@@ -42,14 +40,18 @@ const TasklistsList = () => {
 	}, []);
 
 	function handleClick(listItem) {
-		setIsOpenMenu(false)
-		setSelectedTaskList({id: listItem.id, title: listItem.attributes.title});
+		setIsOpenMenu(false);
+		setSelectedTaskList({ id: listItem.id, title: listItem.attributes.title });
 	}
 
 	function mapList() {
 		let mapList;
 		if (list) {
-			mapList = list.data?.map((item) => (
+			let newList = [
+				{ id: null, attributes: { title: "Все задачи" } },
+				...list.data,
+			];
+			mapList = newList?.map((item) => (
 				<ListItem
 					onClick={() => handleClick(item)}
 					className={s.item}
