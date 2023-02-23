@@ -6,6 +6,7 @@ import AddTaskListItemModalW from "../../4-Widgets/AddTaskListItemModalW";
 import AddTaskModalW from "../../4-Widgets/AddTaskModalW";
 import AddTaskTypeItemModalW from "../../4-Widgets/AddTaskTypeItemModalW";
 import BarW from "../../4-Widgets/BarW";
+import ConsentDeleteTaskListModalW from "../../4-Widgets/ConsentDeleteTaskListModalW";
 import ConsentDeleteTaskModalW from "../../4-Widgets/ConsentDeleteTaskModalW";
 import DialW from "../../4-Widgets/DialW";
 import EditTaskListItemModalW from "../../4-Widgets/EditTaskListItemModalW";
@@ -30,6 +31,7 @@ const Main = () => {
 			<Alert />
 			<MenuW />
 			<ConsentDeleteTaskModalW />
+			<ConsentDeleteTaskListModalW />
 			<AddTaskListItemModalW />
 			<AddTaskTypeItemModalW />
 			<EditTaskTypeItemModalW />
