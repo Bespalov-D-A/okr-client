@@ -4,8 +4,14 @@ import SelectTaskTypeF from "../../5-Features/filters/SelectTaskTypeF";
 
 const FiltersW = () => {
 	return (
-		<Filters>
-			<SelectTaskTypeF />
+		<Filters
+			selectType={(selectTaskType, setSelectedTaskType) => (
+				<SelectTaskTypeF
+					selectedTaskType={selectTaskType}
+					setSelectedTaskType={setSelectedTaskType}
+				/>
+			)}
+		>
 			<SelectTaskCompletedF />
 		</Filters>
 	);

@@ -6,7 +6,36 @@ export const useGreetingModal = create((set) => ({
 	setOpen: (open) => set(produce(state=> {state.open = open})),
 }))
 
+//selectedList - для изменения листа в уже
+//созданной задаче. null || object 
+export const useEditTaskListItemModal = create((set) => ({
+  selectedList: null,
+	setSelectedList: (list) => set(produce(state=> {state.selectedList = list})),
+  taskId: null,
+	setTaskId: (id) => set(produce(state=> {state.taskId = id})),
+  open: false,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+  BtnDisabled: true,
+	setBtnDisabled: (bool) => set(produce(state=> {state.BtnDisabled = bool})),
+}))
+
+
+//selectedType - для изменения типа в уже
+//созданной задаче. null || object 
+export const useEditTaskTypeItemModal = create((set) => ({
+  selectedType: null,
+	setSelectedType: (type) => set(produce(state=> {state.selectedType = type})),
+  taskId: null,
+	setTaskId: (id) => set(produce(state=> {state.taskId = id})),
+  open: false,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+  BtnDisabled: true,
+	setBtnDisabled: (bool) => set(produce(state=> {state.BtnDisabled = bool})),
+}))
+
+
 export const useAddTaskListItemModal = create((set) => ({
+  selectedList: null,
   open: false,
 	setOpen: (open) => set(produce(state=> {state.open = open})),
   BtnDisabled: true,

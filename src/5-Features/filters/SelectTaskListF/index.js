@@ -4,36 +4,36 @@ import { useAlert } from "../../../6-Entities/common";
 import { useTaskList } from "../../../6-Entities/taskList";
 import { taskService } from "../../../7-Shared/API/taskService";
 import s from "./index.module.scss";
-import { FAILED_GET_TASK_TYPES } from "../../../7-Shared/assests/Constants";
-import { useAddTaskTypeItemModal } from "../../../6-Entities/modals";
+import { FAILED_GET_TASK_LISTS, FAILED_GET_TASK_TYPES } from "../../../7-Shared/assests/Constants";
+import { useAddTaskListItemModal, useAddTaskTypeItemModal, useEditTaskListItemModal } from "../../../6-Entities/modals";
 
 const promiseOptions = (e, setAlert) => {
 	const token = reactLocalStorage.get("jwt");
 
 	return taskService
-		.getTaskTypes(token)
+		.getTaskLists(token)
 		.then((res) => {
 			const newRes = [{}, ...res.data.data];
 			return newRes.map((option, index) => ({
 				value: index === 0 ? "" : option.attributes.title,
 				label:
-					index === 0 ? "Без фильтра типов" : "Тип: " + option.attributes.title,
+					index === 0 ? "Без листа" : option.attributes.title,
 				id: index === 0 ? null : option.id,
 			}));
 		})
 		.catch((e) => {
-			setAlert({ type: "error", msg: FAILED_GET_TASK_TYPES });
+			setAlert({ type: "error", msg: FAILED_GET_TASK_LISTS });
 			console.log(e);
 			return [];
 		});
 };
 
-const SelectTaskTypeF = ({selectedTaskType, setSelectedTaskType}) => {
-	const open = useAddTaskTypeItemModal((state) => state.open);
+const SelectTaskListF = ({selectedTaskList, setSelectedTaskList}) => {
+	const open = useEditTaskListItemModal((state) => state.open);
 	const setAlert = useAlert((state) => state.setAlert);
 
 	const handleChange = (e) => {
-		setSelectedTaskType(e);
+		setSelectedTaskList(e);
 	};
 
 	return (
@@ -41,12 +41,12 @@ const SelectTaskTypeF = ({selectedTaskType, setSelectedTaskType}) => {
 			key={open}
 			className={s.select}
 			isSearchable={false}
-			name="selectTaskType"
-			id="selectTaskType"
-			placeholder="Выбрать тип задачи"
+			name="selectTaskList"
+			id="selectTaskList"
+			placeholder="Выбрать лист задачи"
 			cacheOptions
 			defaultOptions
-			value={selectedTaskType}
+			value={selectedTaskList}
 			onBlur={(e) => {}}
 			onChange={handleChange}
 			loadOptions={(e) => promiseOptions(e, setAlert)}
@@ -54,4 +54,4 @@ const SelectTaskTypeF = ({selectedTaskType, setSelectedTaskType}) => {
 	);
 };
 
-export default SelectTaskTypeF;
+export default SelectTaskListF;

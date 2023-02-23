@@ -8,6 +8,8 @@ import AddTaskTypeItemModalW from "../../4-Widgets/AddTaskTypeItemModalW";
 import BarW from "../../4-Widgets/BarW";
 import ConsentDeleteTaskModalW from "../../4-Widgets/ConsentDeleteTaskModalW";
 import DialW from "../../4-Widgets/DialW";
+import EditTaskListItemModalW from "../../4-Widgets/EditTaskListItemModalW";
+import EditTaskTypeItemModalW from "../../4-Widgets/EditTaskTypeItemModalW";
 import FiltersW from "../../4-Widgets/FiltersW";
 import MenuW from "../../4-Widgets/MenuW";
 import TaskListW from "../../4-Widgets/TaskListW";
@@ -30,6 +32,8 @@ const Main = () => {
 			<ConsentDeleteTaskModalW />
 			<AddTaskListItemModalW />
 			<AddTaskTypeItemModalW />
+			<EditTaskTypeItemModalW />
+			<EditTaskListItemModalW />
 			<BarW />
 			<Container className={s.content} maxWidth="xl">
 				<TaskListW>
