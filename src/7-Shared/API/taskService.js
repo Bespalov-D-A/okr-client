@@ -12,6 +12,18 @@ export class taskService {
     return response;
   }
 
+  static async deleteTaskList(token, listId) {
+    const response = await axios.delete(
+      `${server}/api/task-lists/${listId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  }
+
   static async getTaskTypes(token) {
     const response = await axios.get(`${server}/api/task-types`, {
       headers: {
@@ -70,11 +82,14 @@ export class taskService {
   }
 
   static async getTasks(token, query) {
-    const response = await axios.get(`${server}/api/tasks${query ? '?'+query : '' }`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(
+      `${server}/api/tasks${query ? "?" + query : ""}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return response;
   }
 
@@ -95,15 +110,12 @@ export class taskService {
   }
 
   static async deleteTask(token, taskId) {
-    const response = await axios.delete(
-      `${server}/api/tasks/${taskId}`,
-        {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.delete(`${server}/api/tasks/${taskId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response;
   }
 }

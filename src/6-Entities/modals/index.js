@@ -58,6 +58,14 @@ export const useDeleteTaskModal = create((set) => ({
 	setTask: (task) => set(produce(state=> {state.task = task})),
 }))
 
+export const useDeleteTaskListModal = create((set) => ({
+  open: false,
+  list: null,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+	setList: (list) => set(produce(state=> {state.list = list})),
+}))
+
+
 
 export const useAddTaskModal = create((set) => ({
   open: false,
