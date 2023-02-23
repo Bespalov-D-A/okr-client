@@ -29,7 +29,7 @@ const EditTaskTypeItemModalContent = ({ SelectTypeTaskF }) => {
 		async (params) => {
 			const token = reactLocalStorage.get("jwt");
 			const data = {
-				task_type: selectedType.id,
+				task_type: !!selectedType.id ? selectedType.id : null,
 			};
 			const response = await taskService.updateTask(token, taskId, data);
 			console.log(response);

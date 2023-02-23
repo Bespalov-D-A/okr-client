@@ -1,4 +1,4 @@
-import SelectTaskTypeF from "../../5-Features/filters/SelectTaskTypeF";
+import SelectTaskListF from "../../5-Features/filters/SelectTaskListF";
 import EditTaskListItemModalContent from "../../5-Features/modals/Content/EditTaskListItemModalContent";
 import EditTaskListItemModal from "../../5-Features/modals/EditTaskListItemModal";
 
@@ -7,12 +7,11 @@ const EditTaskListItemModalW = () => {
 		<EditTaskListItemModal
 			component={() => (
 				<EditTaskListItemModalContent
-					SelectTypeTaskF={(selectTaskType, setSelectedTaskType) => (
-						<></>
- /*           <SelectTaskTypeF*/
-							/*selectedTaskType={selectTaskType}*/
-							/*setSelectedTaskType={setSelectedTaskType}*/
-						/*/>*/
+					SelectTaskListF={(selectTaskList, setSelectedTaskList) => (
+						<SelectTaskListF
+							selectedTaskList={selectTaskList}
+							setSelectedTaskList={setSelectedTaskList}
+						/>
 					)}
 				/>
 			)}

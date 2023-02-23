@@ -11,6 +11,8 @@ export const useGreetingModal = create((set) => ({
 export const useEditTaskListItemModal = create((set) => ({
   selectedList: null,
 	setSelectedList: (list) => set(produce(state=> {state.selectedList = list})),
+  taskId: null,
+	setTaskId: (id) => set(produce(state=> {state.taskId = id})),
   open: false,
 	setOpen: (open) => set(produce(state=> {state.open = open})),
   BtnDisabled: true,

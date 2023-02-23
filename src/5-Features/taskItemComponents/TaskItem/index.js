@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import {
 	useAddTaskListItemModal,
 	useAddTaskTypeItemModal,
+	useEditTaskListItemModal,
 	useEditTaskTypeItemModal,
 } from "../../../6-Entities/modals";
 
@@ -53,11 +54,16 @@ const TaskItem = ({
 	const setOpenSelectTypeModal = useEditTaskTypeItemModal(
 		(state) => state.setOpen
 	);
-	const setTaskId = useEditTaskTypeItemModal(
-		(state) => state.setTaskId
+	const setOpenSelectListModal = useEditTaskListItemModal(
+		(state) => state.setOpen
 	);
+	const setTaskTypeId = useEditTaskTypeItemModal((state) => state.setTaskId);
+	const setTaskListId = useEditTaskListItemModal((state) => state.setTaskId);
 	const setSelectedType = useEditTaskTypeItemModal(
 		(state) => state.setSelectedType
+	);
+	const setSelectedList = useEditTaskListItemModal(
+		(state) => state.setSelectedList
 	);
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {
@@ -71,11 +77,20 @@ const TaskItem = ({
 	};
 
 	const handleClickList = () => {
-		setOpenTaskListModal(true);
+		const objList = !!taskList.data
+			? {
+					id: taskList.data.id,
+					value: taskList.data.attributes.title,
+					label: taskList.data.attributes.title,
+			  }
+			: null;
+		setSelectedList(objList);
+		setTaskListId(id);
+		setOpenSelectListModal(true);
 	};
 
 	const handleClickType = () => {
-		const objType = taskType
+		const objType = !!taskType.data
 			? {
 					id: taskType.data.id,
 					value: taskType.data.attributes.title,
@@ -83,7 +98,7 @@ const TaskItem = ({
 			  }
 			: null;
 		setSelectedType(objType);
-		setTaskId(id)
+		setTaskTypeId(id);
 		setOpenSelectTypeModal(true);
 	};
 
@@ -121,12 +136,12 @@ const TaskItem = ({
 			<CardContent className={s["list-type"]}>
 				<Tooltip title="Изменить">
 					<Button variant="text" onClick={handleClickList}>
-						{taskList ? taskList.data.attributes.title : "Без листа"}
+						{!!taskList.data ? taskList.data.attributes.title : "Без листа"}
 					</Button>
 				</Tooltip>
 				<Tooltip title="Изменить">
 					<Button variant="text" onClick={handleClickType}>
-						{taskType ? taskType.data.attributes.title : "Без типа"}
+						{!!taskType.data ? taskType.data.attributes.title : "Без типа"}
 					</Button>
 				</Tooltip>
 			</CardContent>
@@ -153,5 +168,4 @@ const TaskItem = ({
 		</Card>
 	);
 };
-
 export default TaskItem;
