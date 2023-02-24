@@ -8,6 +8,8 @@ import { useTaskList } from "../../../6-Entities/taskList";
 import { taskService } from "../../../7-Shared/API/taskService";
 import { FAILED_GET_TASKS } from "../../../7-Shared/assests/Constants";
 import { useLoader } from "../../../7-Shared/hooks/useLoad";
+import { isTokenValid } from "../../../7-Shared/lib/CheckJWT";
+import {clearJWT} from "../../../7-Shared/lib/ClearJWT";
 import s from "./index.module.scss";
 
 const TaskList = ({ Filters, Pagination, TaskItem }) => {
@@ -31,8 +33,8 @@ const TaskList = ({ Filters, Pagination, TaskItem }) => {
 		async (params) => {
 			const token = reactLocalStorage.get("jwt");
 			const response = await taskService.getTasks(token, query);
-
-			//Выводим пагинацию только если она нужна
+			if(!isTokenValid(token)) clearJWT(setAlert)
+				//Выводим пагинацию только если она нужна
 			setPageCount(
 				response.data.meta.pagination.total > pageSize
 					? response.data.meta.pagination.pageCount
@@ -62,12 +64,12 @@ const TaskList = ({ Filters, Pagination, TaskItem }) => {
 
 		const populate = {
 			task_list: {
-				fields: ['id', 'title']
+				fields: ["id", "title"],
 			},
 			task_type: {
-				fields: ['id', 'title']
-			}
-		}
+				fields: ["id", "title"],
+			},
+		};
 
 		const filtersString = qs.stringify({ populate, filters, pagination });
 		query = filtersString.length ? filtersString : null;

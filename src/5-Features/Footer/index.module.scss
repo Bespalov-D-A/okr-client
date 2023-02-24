@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+	color: #fff;
+	background: var(--color-dark);
+}
+
+.lnk {
+	display: block;
+	margin-right: 12px;
+	text-decoration: underline !important;
+	color: #fff;
+}

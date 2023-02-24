@@ -15,6 +15,7 @@ import EditTaskTypeItemModalW from "../../4-Widgets/EditTaskTypeItemModalW";
 import FiltersW from "../../4-Widgets/FiltersW";
 import MenuW from "../../4-Widgets/MenuW";
 import TaskListW from "../../4-Widgets/TaskListW";
+import Footer from "../../5-Features/Footer";
 import Alert from "../../5-Features/ui/Alert";
 import s from "./index.module.scss";
 
@@ -46,6 +47,7 @@ const Main = () => {
 			</Container>
 			<AddTaskModalW />
 			<DialW />
+			<Footer />		
 		</div>
 	);
 };
