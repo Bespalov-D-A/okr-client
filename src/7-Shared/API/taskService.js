@@ -24,6 +24,18 @@ export class taskService {
     return response;
   }
 
+  static async deleteTaskType(token, listId) {
+    const response = await axios.delete(
+      `${server}/api/task-types/${listId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  }
+
   static async getTaskTypes(token) {
     const response = await axios.get(`${server}/api/task-types`, {
       headers: {

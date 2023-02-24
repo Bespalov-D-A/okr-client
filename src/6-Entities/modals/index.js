@@ -6,6 +6,14 @@ export const useGreetingModal = create((set) => ({
 	setOpen: (open) => set(produce(state=> {state.open = open})),
 }))
 
+export const useDeleteTaskTypesModal = create((set) => ({
+  open: false,
+	setOpen: (open) => set(produce(state=> {state.open = open})),
+  type: null,
+	setType: (type) => set(produce(state=> {state.type = type})),
+}))
+
+
 //selectedList - для изменения листа в уже
 //созданной задаче. null || object 
 export const useEditTaskListItemModal = create((set) => ({
