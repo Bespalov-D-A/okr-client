@@ -15,6 +15,7 @@ import CustomScrollBar from "../../../7-Shared/ui/CustomScrollBar";
 import s from "./index.module.scss";
 import IconButton from "@mui/material/IconButton";
 import { useDeleteTaskListModal } from "../../../6-Entities/modals";
+import Divider from "@mui/material/Divider";
 
 const TasklistsList = () => {
 	const setAlert = useAlert((state) => state.setAlert);
@@ -53,9 +54,9 @@ const TasklistsList = () => {
 	}
 
 	function handleDelete(list) {
-		console.log(list)
+		console.log(list);
 		setIsOpenMenu(false);
-		setDelitingList({id: list.id, title: list.attributes.title});
+		setDelitingList({ id: list.id, title: list.attributes.title });
 		setOpenDeleteListModal(true);
 	}
 
@@ -109,6 +110,7 @@ const TasklistsList = () => {
 			{list && (
 				<List className={s.lists}>
 					<CustomScrollBar>{mapList()}</CustomScrollBar>
+					<Divider />
 				</List>
 			)}
 		</div>
